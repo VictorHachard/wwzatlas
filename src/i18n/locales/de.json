@@ -5,8 +5,10 @@
   "seo.h1": "World War Z Horden-Modus Karten",
   "seo.mapHeading": "{name} - World War Z Horden-Modus Karte",
   "seo.about": "Jede der fünf World War Z Horden-Modus-Karten hier ist eine Rekonstruktion der Arena aus der Vogelperspektive: wo Sprengladungen erscheinen, wo Shops und Lootboxen stehen, wo Tore, MGs und Elektrozäune sind, und welche Flächen die Horde tatsächlich begehen kann.",
+  "seo.mapFacts": "{w} × {h} m Arena, {markers} erfasste Objekte auf {floors} Ebenen und {area} m² begehbare Fläche für die Horde.",
 
   "meta.description": "Interaktive Draufsichten der fünf Horden-Modus-Arenen von World War Z: Sprengladungen, Shops, Lootboxen, MGs, Spawnpunkte und begehbare Fläche.",
+  "meta.mapDescription": "Interaktive Draufsicht von {name} im Horden-Modus von World War Z: Sprengladungen, Shops, Lootboxen, MGs, Spawnpunkte und begehbare Fläche.",
 
   "nav.arena": "Arena",
   "nav.layers": "Ebenen",

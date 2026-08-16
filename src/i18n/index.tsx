@@ -10,6 +10,7 @@
  * rides along in the hash, which survives it.
  */
 import langs from "./langs.json";
+import { hrefFor, parseRoute } from "../route";
 import en from "./locales/en.json";
 import fr from "./locales/fr.json";
 import de from "./locales/de.json";
@@ -47,17 +48,6 @@ export const LANGS: Lang[] = langs.map((l) => {
   return { ...l, dict };
 });
 
-const BASE = import.meta.env.BASE_URL; // "/wwzatlas/" on Pages, "/" in dev
-
-/** The URL segment right after the base path, if it names a language. */
-function segFromPath(): string | null {
-  const rest = location.pathname.startsWith(BASE)
-    ? location.pathname.slice(BASE.length)
-    : location.pathname.replace(/^\//, "");
-  const first = rest.split("/")[0].toLowerCase();
-  return LANGS.some((l) => l.seg && l.seg === first) ? first : null;
-}
-
 /** Best match for what the browser asks for: exact tag, then bare language. */
 function segFromNavigator(): string | null {
   for (const pref of navigator.languages ?? [navigator.language]) {
@@ -73,22 +63,24 @@ function segFromNavigator(): string | null {
 }
 
 export function currentLang(): Lang {
-  const seg = segFromPath();
+  const seg = parseRoute().seg;
   if (seg !== null) return LANGS.find((l) => l.seg === seg)!;
   return LANGS[0];
 }
 
 /** Where a visitor with no language in the URL would rather be, or null. */
 export function preferredRedirect(): string | null {
-  if (segFromPath() !== null) return null;
+  if (parseRoute().seg !== null) return null;
   if (localStorage.getItem("lang.pinned")) return null;
   const seg = segFromNavigator();
   return seg ? urlFor(seg) : null;
 }
 
-/** Absolute path for a language, keeping the current hash. */
+/** Absolute path for a language, staying on the arena and the filters the
+ *  visitor is looking at: changing language is a full page load, and landing
+ *  back on the default arena would throw away what they came for. */
 export function urlFor(seg: string): string {
-  return BASE + (seg ? seg + "/" : "") + location.hash;
+  return hrefFor(seg, parseRoute().arena, location.hash);
 }
 
 const dict = currentLang().dict as Dict;

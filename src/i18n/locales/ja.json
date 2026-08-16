@@ -5,8 +5,10 @@
   "seo.h1": "World War Z ホードモード マップ",
   "seo.mapHeading": "{name} - World War Z ホードモードのマップ",
   "seo.about": "ここにある World War Z ホードモードの5つのマップは、いずれもアリーナを俯瞰で再構成したものです。爆破チャージの出現位置、ショップと物資箱の場所、ゲート・機関銃・電気柵の配置、そしてゾンビの群れが実際に歩ける面がわかります。",
+  "seo.mapFacts": "アリーナは {w} × {h} m、{floors} レベルに {markers} 個のオブジェクト、歩行可能面は {area} m²。",
 
   "meta.description": "World War Z ホードモード全5アリーナのインタラクティブ俯瞰マップ。爆破チャージ、ショップ、物資箱、機関銃、スポーン地点、歩行可能面を表示。",
+  "meta.mapDescription": "World War Z ホードモード「{name}」のインタラクティブ俯瞰マップ。爆破チャージ、ショップ、物資箱、機関銃、スポーン地点、歩行可能面を表示。",
 
   "nav.arena": "アリーナ",
   "nav.layers": "レイヤー",

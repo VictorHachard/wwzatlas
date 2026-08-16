@@ -5,8 +5,10 @@
   "seo.h1": "Mappe della Modalità Orda di World War Z",
   "seo.mapHeading": "{name} - mappa della Modalità Orda di World War Z",
   "seo.about": "Ognuna delle cinque mappe della Modalità Orda di World War Z raccolte qui è una ricostruzione dall'alto dell'arena: dove compaiono le cariche da sfondamento, dove sono i negozi e le lootbox, dove si trovano cancelli, mitragliatrici e recinti elettrificati, e quali superfici l'orda può davvero percorrere.",
+  "seo.mapFacts": "{w} × {h} m di arena, {markers} oggetti rilevati su {floors} piani e {area} m² di superficie percorribile dall'orda.",
 
   "meta.description": "Mappe interattive delle cinque arene della Modalità Orda di World War Z: cariche da sfondamento, negozi, lootbox, mitragliatrici, punti di comparsa e superficie percorribile.",
+  "meta.mapDescription": "Mappa interattiva dall'alto di {name} nella Modalità Orda di World War Z: cariche da sfondamento, negozi, lootbox, mitragliatrici, punti di comparsa e superficie percorribile.",
 
   "nav.arena": "Arena",
   "nav.layers": "Livelli",

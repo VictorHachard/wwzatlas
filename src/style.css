@@ -63,6 +63,39 @@ html[lang="zh-Hans"] { --display: "Microsoft YaHei UI", system-ui, sans-serif; }
   text-transform: uppercase;
 }
 
+/* What the build leaves inside #root for anyone reading the page without
+   running the script: a crawler that does not execute JavaScript, a link
+   preview, or a visitor still waiting on 700 kB of geometry. It is the rail
+   with nothing interactive in it, and main.tsx clears it the moment Preact is
+   ready. It has to say what the app says -- one story per page, not one for
+   robots and another for people. */
+.preboot {
+  width: 336px;
+  max-width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--panel);
+  border-right: 1px solid var(--line);
+}
+.preboot h2 {
+  margin: 0 0 8px;
+  font-family: var(--display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.preboot .load {
+  margin: 0;
+  padding: 14px 18px;
+  color: var(--dim);
+  font-family: var(--display);
+  font-size: 12px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
 .banner {
   position: fixed;
   left: 50%;
@@ -164,10 +197,11 @@ html[lang="zh-Hans"] { --display: "Microsoft YaHei UI", system-ui, sans-serif; }
   cursor: pointer;
   text-align: left;
   font: inherit;
+  text-decoration: none;
   border-left: 3px solid transparent;
 }
 .mapbtn:hover { background: #18202c; }
-.mapbtn[aria-pressed="true"] { border-left-color: var(--live); background: #1a2331; }
+.mapbtn[aria-current="page"] { border-left-color: var(--live); background: #1a2331; }
 .mapbtn b {
   font-family: var(--display);
   font-weight: 600;
@@ -175,6 +209,7 @@ html[lang="zh-Hans"] { --display: "Microsoft YaHei UI", system-ui, sans-serif; }
   font-size: 15px;
 }
 .mapbtn span { font-family: var(--mono); font-size: 10.5px; color: var(--muted); }
+.facts { margin: 3px 0 0; font-size: 12px; line-height: 1.5; color: var(--muted); }
 
 .layers { display: flex; flex-direction: column; gap: 4px; }
 .layer {

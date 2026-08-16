@@ -5,8 +5,10 @@
   "seo.h1": "Cartes du mode Horde de World War Z",
   "seo.mapHeading": "{name} - carte du mode Horde de World War Z",
   "seo.about": "Chacune des cinq cartes du mode Horde de World War Z réunies ici est une reconstruction vue du dessus de l'arène : où apparaissent les charges de brèche, où sont les boutiques et les lootboxes, où se trouvent les portails, les mitrailleuses et les clôtures électrifiées, et quelles surfaces la horde peut réellement parcourir.",
+  "seo.mapFacts": "{w} × {h} m d'arène, {markers} objets repérés sur {floors} niveaux et {area} m² de sol praticable pour la horde.",
 
   "meta.description": "Cartes interactives des cinq arènes du mode Horde de World War Z : charges de brèche, boutiques, lootboxes, mitrailleuses, points d'apparition et surface praticable.",
+  "meta.mapDescription": "Carte interactive vue du dessus de {name} dans le mode Horde de World War Z : charges de brèche, boutiques, lootboxes, mitrailleuses, points d'apparition et surface praticable.",
 
   "nav.arena": "Arène",
   "nav.layers": "Calques",

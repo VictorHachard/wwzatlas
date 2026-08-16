@@ -5,8 +5,10 @@
   "seo.h1": "World War Z 호드 모드 맵",
   "seo.mapHeading": "{name} - World War Z 호드 모드 맵",
   "seo.about": "여기 있는 World War Z 호드 모드 맵 다섯 개는 모두 아레나를 위에서 내려다본 형태로 재구성한 것입니다. 폭파 장약이 나오는 위치, 상점과 보급 상자의 자리, 게이트·기관총·전기 울타리의 배치, 그리고 좀비 무리가 실제로 이동할 수 있는 지형을 확인할 수 있습니다.",
+  "seo.mapFacts": "{w} × {h} m 아레나, {floors}개 레벨에 배치된 오브젝트 {markers}개, 이동 가능 지형 {area} m².",
 
   "meta.description": "World War Z 호드 모드 5개 아레나의 인터랙티브 top-down 지도. 폭파 장약, 상점, 보급 상자, 기관총, 스폰 지점, 이동 가능 지형을 표시합니다.",
+  "meta.mapDescription": "World War Z 호드 모드 '{name}'의 인터랙티브 top-down 지도. 폭파 장약, 상점, 보급 상자, 기관총, 스폰 지점, 이동 가능 지형을 표시합니다.",
 
   "nav.arena": "아레나",
   "nav.layers": "레이어",

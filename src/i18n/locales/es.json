@@ -5,8 +5,10 @@
   "seo.h1": "Mapas del Modo Horda de World War Z",
   "seo.mapHeading": "{name} - mapa del Modo Horda de World War Z",
   "seo.about": "Cada uno de los cinco mapas del Modo Horda de World War Z reunidos aquí es una reconstrucción cenital de la arena: dónde aparecen las cargas de demolición, dónde están las tiendas y las cajas de botín, dónde se sitúan los portones, las ametralladoras y las vallas eléctricas, y qué superficies puede recorrer realmente la horda.",
+  "seo.mapFacts": "{w} × {h} m de arena, {markers} objetos localizados en {floors} niveles y {area} m² de superficie transitable para la horda.",
 
   "meta.description": "Mapas interactivos de las cinco arenas del Modo Horda de World War Z: cargas de demolición, tiendas, cajas de botín, ametralladoras, puntos de aparición y superficie transitable.",
+  "meta.mapDescription": "Mapa interactivo cenital de {name} en el Modo Horda de World War Z: cargas de demolición, tiendas, cajas de botín, ametralladoras, puntos de aparición y superficie transitable.",
 
   "nav.arena": "Arena",
   "nav.layers": "Capas",

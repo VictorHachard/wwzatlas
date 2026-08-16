@@ -6,6 +6,8 @@
  */
 import { CATS, FLOOR_COL } from "../catalog";
 import type { AtlasIndex, MapDoc } from "../data/loader";
+import { arenaBySlug } from "../arenas";
+import { hrefFor } from "../route";
 import { LANGS, currentLang, t, num, urlFor } from "../i18n";
 
 interface Props {
@@ -38,6 +40,7 @@ export function Rail(p: Props) {
   const counts: Record<string, number> = {};
   p.doc?.markers.forEach((m) => (counts[m.c] = (counts[m.c] || 0) + 1));
   const lang = currentLang();
+  const here = p.index.maps.find((m) => m.slug === p.slug);
 
   return (
     <aside class={"rail" + (p.open ? " open" : "")} id={p.id}>
@@ -58,25 +61,51 @@ export function Rail(p: Props) {
 
       <section class="sect">
         <h3>{t("nav.arena")}</h3>
+        {/* Real links, not buttons. Each arena is a page of its own, so this is
+            the one list that tells a crawler the other four exist, and it is
+            also what lets someone middle-click Tokyo into a second tab. The
+            click handler only takes over the plain left click; every modifier
+            the browser has a better answer for is left alone. */}
         <div class="maps">
           {p.index.maps.map((m) => (
-            <button
+            <a
               key={m.slug}
               class="mapbtn"
-              aria-pressed={m.slug === p.slug}
-              onClick={() => p.onSlug(m.slug)}
+              href={hrefFor(lang.seg, arenaBySlug(m.slug) ?? null)}
+              aria-current={m.slug === p.slug ? "page" : undefined}
+              onClick={(e) => {
+                if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button) return;
+                e.preventDefault();
+                p.onSlug(m.slug);
+              }}
               // An arena is ~700 kB of quantised geometry that barely gzips, so
               // fetching all five up front would spend 3 MB of someone's data
-              // on four arenas they may never open. Pointing at the button is
+              // on four arenas they may never open. Pointing at the link is
               // the earliest honest signal that they will.
               onMouseEnter={() => p.onPrefetch(m.slug)}
               onFocus={() => p.onPrefetch(m.slug)}
             >
               <b>{t("map." + m.key)}</b>
               <span>{t("stats.size", { w: num(m.sizeM[0]), h: num(m.sizeM[1]) })}</span>
-            </button>
+            </a>
           ))}
         </div>
+
+        {/* The one sentence that is true of this arena and of no other. It is
+            what makes /tokyo/ a different document from /rome/ rather than the
+            same shell with a different heading, and it is genuinely the first
+            thing anyone asks about an arena they have not played. */}
+        {here && (
+          <p class="facts">
+            {t("seo.mapFacts", {
+              w: num(here.sizeM[0]),
+              h: num(here.sizeM[1]),
+              markers: num(here.markers),
+              floors: num(here.floors),
+              area: num(here.navStats?.area ?? 0),
+            })}
+          </p>
+        )}
       </section>
 
       <section class="sect">

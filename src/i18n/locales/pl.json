@@ -5,8 +5,10 @@
   "seo.h1": "Mapy trybu Horda w World War Z",
   "seo.mapHeading": "{name} - mapa trybu Horda w World War Z",
   "seo.about": "Każda z pięciu map trybu Horda w World War Z zebranych tutaj to rekonstrukcja areny z lotu ptaka: gdzie pojawiają się ładunki wyburzeniowe, gdzie stoją sklepy i skrzynie, gdzie są bramy, karabiny maszynowe i ogrodzenia pod napięciem oraz po jakich powierzchniach horda faktycznie może chodzić.",
+  "seo.mapFacts": "{w} × {h} m areny, {markers} rozmieszczonych obiektów na {floors} poziomach i {area} m² powierzchni, po której chodzi horda.",
 
   "meta.description": "Interaktywne mapy pięciu aren trybu Horda w World War Z: ładunki wyburzeniowe, sklepy, skrzynie, karabiny maszynowe, punkty odrodzenia i powierzchnia do chodzenia.",
+  "meta.mapDescription": "{name} - interaktywna mapa z lotu ptaka w trybie Horda w World War Z: ładunki wyburzeniowe, sklepy, skrzynie, karabiny maszynowe, punkty odrodzenia i powierzchnia do chodzenia.",
 
   "nav.arena": "Arena",
   "nav.layers": "Warstwy",

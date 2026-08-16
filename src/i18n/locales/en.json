@@ -5,8 +5,10 @@
   "seo.h1": "World War Z Horde Mode Maps",
   "seo.mapHeading": "{name} - World War Z Horde Mode map",
   "seo.about": "Each of the five World War Z Horde Mode maps here is a top-down reconstruction of the arena: where breaching charges spawn, where the shops and lootboxes are, where the gates, machine guns and electric fences stand, and which surfaces the horde can actually walk on.",
+  "seo.mapFacts": "{w} × {h} m of arena, {markers} marked objects across {floors} levels, and {area} m² of ground the horde can walk on.",
 
   "meta.description": "Interactive top-down maps of the five World War Z Horde Mode arenas: breaching charges, shops, lootboxes, machine guns, spawns and the walkable navmesh.",
+  "meta.mapDescription": "Interactive top-down map of {name} in World War Z Horde Mode: breaching charges, shops, lootboxes, machine guns, spawns and the walkable navmesh.",
 
   "nav.arena": "Arena",
   "nav.layers": "Layers",

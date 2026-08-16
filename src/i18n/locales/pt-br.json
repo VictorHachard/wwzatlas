@@ -5,8 +5,10 @@
   "seo.h1": "Mapas do Modo Horda de World War Z",
   "seo.mapHeading": "{name} - mapa do Modo Horda de World War Z",
   "seo.about": "Cada um dos cinco mapas do Modo Horda de World War Z reunidos aqui é uma reconstrução da arena vista de cima: onde surgem as cargas de demolição, onde ficam as lojas e as caixas de suprimentos, onde estão os portões, as metralhadoras e as cercas elétricas, e por quais superfícies a horda realmente consegue andar.",
+  "seo.mapFacts": "{w} × {h} m de arena, {markers} objetos posicionados em {floors} níveis e {area} m² de área caminhável pela horda.",
 
   "meta.description": "Mapas interativos das cinco arenas do Modo Horda de World War Z: cargas de demolição, lojas, caixas de suprimentos, metralhadoras, pontos de surgimento e área caminhável.",
+  "meta.mapDescription": "Mapa interativo em vista superior de {name} no Modo Horda de World War Z: cargas de demolição, lojas, caixas de suprimentos, metralhadoras, pontos de surgimento e área caminhável.",
 
   "nav.arena": "Arena",
   "nav.layers": "Camadas",
