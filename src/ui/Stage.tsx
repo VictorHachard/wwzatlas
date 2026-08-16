@@ -1,18 +1,18 @@
-/* The viewport: two stacked canvases, the readout, the zoom buttons and the
- * hover tooltip.
+/* The viewport: two stacked canvases, the control legend, the zoom buttons and
+ * the hover tooltip.
  *
  * Preact owns none of the drawing. It creates the renderer once, hands it the
  * canvases, and afterwards only pushes state into it -- which arena, which
  * floors, which categories. Everything the renderer wants to say back (a marker
- * under the cursor, where the camera is, how many volumes it dropped) comes out
- * as a callback and lands in ordinary component state.
+ * under the cursor, how many volumes it dropped) comes out as a callback and
+ * lands in ordinary component state.
  */
 import { useEffect, useRef, useState } from "preact/hooks";
 import { createRenderer } from "../gl/renderer.js";
-import type { CamReadout, Renderer } from "../gl/renderer";
+import type { Renderer } from "../gl/renderer";
 import type { MapDoc, Marker } from "../data/loader";
 import { CAT_BY, FLOOR_COL, prettyZone } from "../catalog";
-import { t, num } from "../i18n";
+import { t } from "../i18n";
 
 interface Props {
   doc: MapDoc | null;
@@ -40,7 +40,6 @@ export function Stage(p: Props) {
   const overlay = useRef<HTMLCanvasElement>(null);
   const rend = useRef<Renderer | null>(null);
   const [hover, setHover] = useState<Hover | null>(null);
-  const [cam, setCam] = useState<CamReadout | null>(null);
 
   // Callbacks the renderer holds for its whole life, so they must not close
   // over props that change. Everything they touch is a setState or a ref.
@@ -56,7 +55,9 @@ export function Stage(p: Props) {
       floorCol: FLOOR_COL,
       zoneText: (z) => prettyZone(z.z),
       onHover: (hit, x, y) => setHover(hit ? { hit, x, y } : null),
-      onCamera: setCam,
+      // onCamera is left unsubscribed on purpose: nothing shows the azimuth and
+      // distance any more, and taking them would re-render the component on
+      // every frame of a drag to update something nobody reads.
       onNoWebGL: () => cbs.current.onNoWebGL(),
     });
     rend.current = r;
@@ -158,19 +159,17 @@ export function Stage(p: Props) {
         </button>
       </div>
 
-      {/* The corner says whatever is worth saying to the pointer in use. A mouse
-          gets the camera readout: the controls are self-evident and where the
-          camera is standing is not. A finger gets the opposite -- there is no
-          hover to discover the gestures with, and nobody pinches a map they
-          have not been told is pinchable, so the legend is worth more there
-          than three numbers. */}
+      {/* How to move the map, in the corner where the camera readout used to be.
+          The readout was three numbers that told a visitor nothing they could
+          act on; what nobody guesses on their own is that the right button
+          turns the view and that a marker can be clicked. Both pointers get the
+          same four lines, worded for the device actually in use. */}
       <div class="hud">
-        {cam && (
-          <div class="readout bymouse">
-            <em>{t("hud.camera")}</em> az {cam.az.toFixed(0)}° el {cam.el.toFixed(0)}° d{" "}
-            {num(Math.round(cam.dist))} m
-          </div>
-        )}
+        <div class="gestures bymouse">
+          {["pan", "zoom", "tilt", "click"].map((k) => (
+            <p key={k}>{t("mouse." + k)}</p>
+          ))}
+        </div>
         <div class="gestures bytouch">
           {["pan", "zoom", "tilt", "tap"].map((k) => (
             <p key={k}>{t("touch." + k)}</p>

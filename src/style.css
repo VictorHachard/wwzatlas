@@ -271,19 +271,9 @@ canvas.grabbing { cursor: grabbing; }
   gap: 7px;
   pointer-events: none;
 }
-.readout {
-  background: rgba(10, 13, 19, 0.92);
-  border: 1px solid var(--line);
-  padding: 7px 11px;
-  font-family: var(--mono);
-  font-size: 11.5px;
-  font-variant-numeric: tabular-nums;
-}
-.readout em { color: var(--dim); font-style: normal; }
-
-/* The gesture legend that stands where the readout stands on a mouse. It is
-   inside .hud, so it inherits the same pointer-events: none -- a note over the
-   map must never be something you can accidentally grab instead of the map. */
+/* How to move the map, one line per control. It is inside .hud, so it inherits
+   the same pointer-events: none -- a note lying over the map must never be
+   something you can accidentally grab instead of the map. */
 .gestures {
   background: rgba(10, 13, 19, 0.92);
   border: 1px solid var(--line);
@@ -438,7 +428,7 @@ canvas.grabbing { cursor: grabbing; }
     right: calc(12px + env(safe-area-inset-right));
     bottom: calc(12px + env(safe-area-inset-bottom));
   }
-  /* narrow enough that the readout and the recentre button share the bottom
-     edge instead of meeting in the middle */
-  .readout { font-size: 10.5px; padding: 5px 8px; }
+  /* narrow enough that the legend and the recentre button share the bottom edge
+     instead of meeting in the middle */
+  .gestures { font-size: 10.5px; padding: 5px 8px; }
 }
