@@ -12,6 +12,8 @@
   "nav.layers": "图层",
   "nav.objects": "游戏物件",
   "nav.language": "语言",
+  "nav.menu": "菜单",
+  "nav.close": "关闭",
 
   "map.jerusalem": "耶路撒冷",
   "map.newYork": "纽约",
@@ -46,6 +48,11 @@
   "hud.zoomOut": "缩小",
   "hud.camera": "摄像机",
   "hint.controls": "拖动平移，滚轮缩放，右键倾斜。点击“回正视角”返回俯视图。",
+  "hint.controlsTouch": "单指拖动平移，双指捏合缩放，旋转可转动地图，双指拖动可倾斜视角。点按标记即可查看。",
+  "touch.pan": "单指 · 平移",
+  "touch.zoom": "捏合 · 缩放",
+  "touch.tilt": "双指 · 旋转、倾斜",
+  "touch.tap": "点按 · 详情",
 
   "tip.zone": "区域",
   "tip.level": "层",

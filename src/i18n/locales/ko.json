@@ -12,6 +12,8 @@
   "nav.layers": "레이어",
   "nav.objects": "게임 오브젝트",
   "nav.language": "언어",
+  "nav.menu": "메뉴",
+  "nav.close": "닫기",
 
   "map.jerusalem": "예루살렘",
   "map.newYork": "뉴욕",
@@ -46,6 +48,11 @@
   "hud.zoomOut": "축소",
   "hud.camera": "카메라",
   "hint.controls": "드래그로 이동, 휠로 확대·축소, 오른쪽 클릭으로 기울입니다. ‘중앙 정렬’을 누르면 top-down 시점으로 돌아갑니다.",
+  "hint.controlsTouch": "한 손가락으로 끌어 이동, 두 손가락을 모으거나 벌려 확대·축소, 비틀어 회전, 두 손가락으로 끌어 기울입니다. 마커를 누르면 내용이 나옵니다.",
+  "touch.pan": "한 손가락 · 이동",
+  "touch.zoom": "손가락 모으기 · 확대",
+  "touch.tilt": "두 손가락 · 회전·기울이기",
+  "touch.tap": "탭 · 상세",
 
   "tip.zone": "구역",
   "tip.level": "층",

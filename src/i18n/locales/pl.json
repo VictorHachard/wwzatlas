@@ -12,6 +12,8 @@
   "nav.layers": "Warstwy",
   "nav.objects": "Obiekty w grze",
   "nav.language": "Język",
+  "nav.menu": "Menu",
+  "nav.close": "Zamknij",
 
   "map.jerusalem": "Jerozolima",
   "map.newYork": "Nowy Jork",
@@ -46,6 +48,11 @@
   "hud.zoomOut": "Oddal",
   "hud.camera": "kamera",
   "hint.controls": "Przeciągnij, aby przesunąć, kółko myszy przybliża, prawy przycisk pochyla. „Wyśrodkuj” wraca do widoku z góry.",
+  "hint.controlsTouch": "Jeden palec przesuwa mapę, zsunięcie palców przybliża, obrót obraca, dwa palce pochylają widok. Dotknij znacznika, aby go odczytać.",
+  "touch.pan": "1 palec · przesuń",
+  "touch.zoom": "Zsuń palce · zoom",
+  "touch.tilt": "2 palce · obróć, pochyl",
+  "touch.tap": "Dotknij · szczegóły",
 
   "tip.zone": "strefa",
   "tip.level": "poz.",

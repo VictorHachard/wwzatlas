@@ -29,6 +29,11 @@ interface Hover {
   y: number;
 }
 
+/** What the tooltip is allowed to grow to; mirrors `.tip` in style.css. */
+const TIP_W = 300;
+const tipWidth = (el: HTMLElement | null) =>
+  Math.min(TIP_W, (el?.clientWidth ?? TIP_W) - 16);
+
 export function Stage(p: Props) {
   const stage = useRef<HTMLDivElement>(null);
   const glc = useRef<HTMLCanvasElement>(null);
@@ -100,9 +105,22 @@ export function Stage(p: Props) {
       {hover && (
         <div
           class="tip"
+          // Down-right of the pointer, but never off the stage: on a phone the
+          // tooltip is nearly as wide as the viewport and a tap near the right
+          // edge or near the bottom would otherwise put it out of reach. TIP_W
+          // has to match the max-width in the stylesheet.
           style={{
-            left: Math.min(hover.x + 16, (stage.current?.clientWidth ?? 0) - 340),
-            top: hover.y + 16,
+            left: Math.max(
+              8,
+              Math.min(
+                hover.x + 16,
+                (stage.current?.clientWidth ?? 0) - tipWidth(stage.current) - 8,
+              ),
+            ),
+            top:
+              hover.y + 16 > (stage.current?.clientHeight ?? 0) - 140
+                ? Math.max(8, hover.y - 132)
+                : hover.y + 16,
           }}
         >
           <b>
@@ -140,14 +158,25 @@ export function Stage(p: Props) {
         </button>
       </div>
 
-      {cam && (
-        <div class="hud">
-          <div class="readout">
+      {/* The corner says whatever is worth saying to the pointer in use. A mouse
+          gets the camera readout: the controls are self-evident and where the
+          camera is standing is not. A finger gets the opposite -- there is no
+          hover to discover the gestures with, and nobody pinches a map they
+          have not been told is pinchable, so the legend is worth more there
+          than three numbers. */}
+      <div class="hud">
+        {cam && (
+          <div class="readout bymouse">
             <em>{t("hud.camera")}</em> az {cam.az.toFixed(0)}° el {cam.el.toFixed(0)}° d{" "}
             {num(Math.round(cam.dist))} m
           </div>
+        )}
+        <div class="gestures bytouch">
+          {["pan", "zoom", "tilt", "tap"].map((k) => (
+            <p key={k}>{t("touch." + k)}</p>
+          ))}
         </div>
-      )}
+      </div>
     </div>
   );
 }

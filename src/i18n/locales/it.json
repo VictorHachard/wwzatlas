@@ -12,6 +12,8 @@
   "nav.layers": "Livelli",
   "nav.objects": "Oggetti di gioco",
   "nav.language": "Lingua",
+  "nav.menu": "Menu",
+  "nav.close": "Chiudi",
 
   "map.jerusalem": "Gerusalemme",
   "map.newYork": "New York",
@@ -46,6 +48,11 @@
   "hud.zoomOut": "Riduci",
   "hud.camera": "camera",
   "hint.controls": "Trascina per spostare, rotellina per zoomare, tasto destro per inclinare. «Ricentra» torna alla vista dall'alto.",
+  "hint.controlsTouch": "Un dito sposta la mappa, pizzica per zoomare, ruota per girarla, due dita per inclinare. Tocca un indicatore per leggerlo.",
+  "touch.pan": "1 dito · sposta",
+  "touch.zoom": "Pizzica · zoom",
+  "touch.tilt": "2 dita · ruota, inclina",
+  "touch.tap": "Tocca · dettagli",
 
   "tip.zone": "zona",
   "tip.level": "piano",

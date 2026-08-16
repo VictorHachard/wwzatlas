@@ -21,6 +21,9 @@ export function App() {
   const [nav, setNav] = useState(boot.nav);
   const [zones, setZones] = useState(boot.zones);
   const [error, setError] = useState<string | null>(null);
+  // Only a phone ever hides the rail; on a wide screen the class is inert and
+  // the rail is simply the left column.
+  const [menu, setMenu] = useState(false);
 
   useEffect(() => {
     loadIndex().then(setIndex, () => setError(t("error.load")));
@@ -49,6 +52,13 @@ export function App() {
   }, [slug]);
 
   useEffect(() => {
+    if (!menu) return;
+    const esc = (e: KeyboardEvent) => e.key === "Escape" && setMenu(false);
+    addEventListener("keydown", esc);
+    return () => removeEventListener("keydown", esc);
+  }, [menu]);
+
+  useEffect(() => {
     if (!doc) return;
     writeHash(
       { map: slug, cats: [...cats], floors: [...floors], nav, zones },
@@ -63,8 +73,26 @@ export function App() {
   }
 
   return (
-    <div class="app">
+    <div class="app" data-menu={menu ? "open" : "shut"}>
+      {/* The whole point of the drawer is that the arena gets the screen, so on
+          a phone the only chrome left over the map is this one button. It is
+          hidden on a wide screen, where the rail is always there. */}
+      <button
+        class="menubtn"
+        aria-expanded={menu}
+        aria-controls="rail"
+        aria-label={t("nav.menu")}
+        onClick={() => setMenu((v) => !v)}
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+      </button>
+      <div class="scrim" onClick={() => setMenu(false)} />
+
       <Rail
+        id="rail"
+        open={menu}
         index={index}
         doc={doc}
         slug={slug}
@@ -72,7 +100,11 @@ export function App() {
         floors={floors}
         nav={nav}
         zones={zones}
-        onSlug={setSlug}
+        // Picking an arena is the one choice whose result is only visible on the
+        // map, so it closes the drawer. Toggling a filter is not: people flip
+        // several in a row.
+        onSlug={(s) => { setSlug(s); setMenu(false); }}
+        onClose={() => setMenu(false)}
         onPrefetch={prefetch}
         onCats={setCats}
         onFloors={setFloors}

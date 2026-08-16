@@ -728,8 +728,10 @@ export function createRenderer(o) {
     requestAnimationFrame(() => { pending = false; draw(); });
   }
 
-  function pick(mx, my) {
-    let best = null, bd = 13;
+  /* `reach` is how far from the marker a hit still counts. A cursor is exact and
+     a fingertip is not, so touch asks for a wider one. */
+  function pick(mx, my, reach = 13) {
+    let best = null, bd = reach;
     visibleMarkers().forEach((k) => {
       const s = screenOf(k);
       if (!s) return;
@@ -781,6 +783,9 @@ export function createRenderer(o) {
   }
 
   /* ------------------------------------------------------------- input --- */
+  const clampHalf = (h) =>
+    Math.max(camRadius() * 0.02, Math.min(camRadius() * 3, h));
+
   let drag = null;
 
   const onContext = (e) => e.preventDefault();
@@ -836,15 +841,128 @@ export function createRenderer(o) {
   const onWheel = (e) => {
     e.preventDefault();
     if (!M) return;
-    cam.half = Math.max(camRadius() * 0.02,
-                        Math.min(camRadius() * 3, cam.half * Math.exp(e.deltaY * 0.0011)));
+    cam.half = clampHalf(cam.half * Math.exp(e.deltaY * 0.0011));
     reportCam();
     scheduleDraw();
+  };
+
+  /* Touch is not a mouse with buttons missing.
+   *
+   * A phone has no wheel to zoom with and no second button to tilt with, so
+   * those two have to come from somewhere else, and the somewhere else people
+   * already know is the gesture set every map app uses: one finger slides the
+   * map, two fingers pinch to zoom, twist to turn and drag to lean the camera
+   * over. Nothing here is a new thing to learn.
+   *
+   * Preventing the default on every touch is deliberate: without it the browser
+   * takes the same two-finger gesture for its own page zoom and the map gets
+   * half of it. */
+  let ges = null;
+
+  const centre2 = (ts) => {
+    let x = 0, y = 0;
+    for (let i = 0; i < ts.length; i++) { x += ts[i].clientX; y += ts[i].clientY; }
+    return [x / ts.length, y / ts.length];
+  };
+  const spread = (ts) =>
+    Math.hypot(ts[0].clientX - ts[1].clientX, ts[0].clientY - ts[1].clientY);
+  // screen y points down, so this angle grows clockwise -- the direction the
+  // fingers visibly turn
+  const twist = (ts) =>
+    Math.atan2(ts[1].clientY - ts[0].clientY, ts[1].clientX - ts[0].clientX);
+
+  /* A gesture is re-based whenever the number of fingers changes: lifting one
+     finger out of a pinch must continue as a pan from where the map is now, not
+     jump because the anchor was taken from a two-finger frame. */
+  function grab(ts) {
+    const [x, y] = centre2(ts);
+    const g = {
+      n: ts.length, x, y, moved: false, t0: performance.now(),
+      ctx: cam.tx, cty: cam.ty, el: cam.el, half: cam.half,
+    };
+    if (ts.length > 1) {
+      g.d = spread(ts) || 1;
+      g.a = twist(ts);
+      // where each finger started, keyed by its identifier: the order of the
+      // touch list is not promised to stay the same between events
+      g.ys = {};
+      for (let i = 0; i < ts.length; i++) g.ys[ts[i].identifier] = ts[i].clientY;
+    }
+    return g;
+  }
+
+  const onTouchStart = (e) => {
+    if (!M) return;
+    e.preventDefault();
+    ges = grab(e.touches);
+    cv.classList.add("grabbing");
+  };
+  const onTouchMove = (e) => {
+    if (!M || !ges) return;
+    e.preventDefault();
+    const ts = e.touches;
+    if (ts.length !== ges.n) { ges = grab(ts); return; }
+    const r = cv.getBoundingClientRect();
+    const [cx, cy] = centre2(ts);
+    const dx = cx - ges.x, dy = cy - ges.y;
+    if (Math.abs(dx) + Math.abs(dy) > 6) ges.moved = true;
+
+    if (ges.n === 1) {
+      const k = (2 * cam.half) / Math.max(r.height, 1);
+      const ca = Math.cos(cam.az), sa = Math.sin(cam.az);
+      cam.tx = ges.ctx - (dx * sa + dy * ca) * k;
+      cam.ty = ges.cty - (-dx * ca + dy * sa) * k;
+    } else {
+      const d = spread(ts) || 1;
+      if (Math.abs(d - ges.d) > 6) ges.moved = true;
+      cam.half = clampHalf(ges.half * (ges.d / d));
+      // The turn is applied frame by frame rather than against the angle the
+      // gesture started at: an angle read from atan2 wraps, and a difference
+      // taken across that wrap would spin the map a full turn.
+      const a = twist(ts);
+      let da = a - ges.a;
+      if (da > Math.PI) da -= 2 * Math.PI;
+      else if (da < -Math.PI) da += 2 * Math.PI;
+      ges.a = a;
+      // turning the fingers clockwise turns the map clockwise, and the camera
+      // goes the other way round
+      cam.az -= da;
+      // Two fingers travelling the same way is a lean. One moving against the
+      // other is a pinch, and the centroid sliding as a side effect of that is
+      // not an instruction to tilt -- so the lean is the smaller of the two
+      // movements, and nothing at all when they disagree.
+      const y0 = ts[0].clientY - (ges.ys[ts[0].identifier] ?? ts[0].clientY);
+      const y1 = ts[1].clientY - (ges.ys[ts[1].identifier] ?? ts[1].clientY);
+      let lean = 0;
+      if (y0 > 0 && y1 > 0) lean = Math.min(y0, y1);
+      else if (y0 < 0 && y1 < 0) lean = Math.max(y0, y1);
+      cam.el = Math.max(0.03, Math.min(TOP_EL, ges.el + lean * 0.005));
+    }
+    reportCam();
+    scheduleDraw();
+  };
+  const onTouchEnd = (e) => {
+    if (!ges) return;
+    const tap = ges.n === 1 && !ges.moved && performance.now() - ges.t0 < 450;
+    const { x, y } = ges;
+    ges = e.touches.length ? grab(e.touches) : null;
+    if (!ges) cv.classList.remove("grabbing");
+    if (!tap || !M) return;
+    // A touch screen has no hover, so the tap does that job instead: it opens
+    // the readout for whatever is under the finger, and closes it again when
+    // the finger lands on nothing.
+    const r = cv.getBoundingClientRect();
+    const mx = x - r.left, my = y - r.top;
+    o.onHover?.(pick(mx, my, 22), mx, my);
   };
 
   cv.addEventListener("contextmenu", onContext);
   cv.addEventListener("mousedown", onDown);
   cv.addEventListener("wheel", onWheel, { passive: false });
+  cv.addEventListener("touchstart", onTouchStart, { passive: false });
+  cv.addEventListener("touchmove", onTouchMove, { passive: false });
+  cv.addEventListener("touchend", onTouchEnd);
+  cv.addEventListener("touchcancel", onTouchEnd);
   window.addEventListener("mousemove", onMove);
   window.addEventListener("mouseup", onUp);
 
@@ -873,7 +991,7 @@ export function createRenderer(o) {
     floors: () => new Set(floorsOn),
     resetCam() { resetCam(); draw(); },
     zoomBy(f) {
-      cam.half = Math.max(camRadius() * 0.02, Math.min(camRadius() * 3, cam.half * f));
+      cam.half = clampHalf(cam.half * f);
       reportCam(); draw();
     },
     flyTo,
@@ -885,6 +1003,10 @@ export function createRenderer(o) {
       cv.removeEventListener("contextmenu", onContext);
       cv.removeEventListener("mousedown", onDown);
       cv.removeEventListener("wheel", onWheel);
+      cv.removeEventListener("touchstart", onTouchStart);
+      cv.removeEventListener("touchmove", onTouchMove);
+      cv.removeEventListener("touchend", onTouchEnd);
+      cv.removeEventListener("touchcancel", onTouchEnd);
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseup", onUp);
       // let the driver reclaim the context instead of waiting for GC

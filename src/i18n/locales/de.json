@@ -12,6 +12,8 @@
   "nav.layers": "Ebenen",
   "nav.objects": "Spielobjekte",
   "nav.language": "Sprache",
+  "nav.menu": "Menü",
+  "nav.close": "Schließen",
 
   "map.jerusalem": "Jerusalem",
   "map.newYork": "New York",
@@ -46,6 +48,11 @@
   "hud.zoomOut": "Herauszoomen",
   "hud.camera": "Kamera",
   "hint.controls": "Ziehen zum Verschieben, Mausrad zum Zoomen, Rechtsklick zum Neigen. „Zentrieren“ kehrt zur Draufsicht zurück.",
+  "hint.controlsTouch": "Ein Finger verschiebt die Karte, Zusammenziehen zoomt, Drehen dreht sie, zwei Finger neigen die Kamera. Auf einen Marker tippen, um ihn zu lesen.",
+  "touch.pan": "1 Finger · schieben",
+  "touch.zoom": "Zusammenziehen · Zoom",
+  "touch.tilt": "2 Finger · drehen, neigen",
+  "touch.tap": "Tippen · Details",
 
   "tip.zone": "Zone",
   "tip.level": "Eb.",

@@ -12,6 +12,8 @@
   "nav.layers": "レイヤー",
   "nav.objects": "ゲームオブジェクト",
   "nav.language": "言語",
+  "nav.menu": "メニュー",
+  "nav.close": "閉じる",
 
   "map.jerusalem": "エルサレム",
   "map.newYork": "ニューヨーク",
@@ -46,6 +48,11 @@
   "hud.zoomOut": "縮小",
   "hud.camera": "カメラ",
   "hint.controls": "ドラッグで移動、ホイールで拡大縮小、右クリックで傾け。「中央に戻す」で俯瞰視点に戻ります。",
+  "hint.controlsTouch": "1本指でドラッグして移動、ピンチで拡大縮小、ひねって回転、2本指で傾けます。マーカーをタップすると内容が出ます。",
+  "touch.pan": "1本指 · 移動",
+  "touch.zoom": "ピンチ · 拡大縮小",
+  "touch.tilt": "2本指 · 回転・傾け",
+  "touch.tap": "タップ · 詳細",
 
   "tip.zone": "ゾーン",
   "tip.level": "階",

@@ -24,8 +24,14 @@ body {
   font-family: var(--body);
   font-size: 14px;
   line-height: 1.5;
+  /* dvh, so a mobile browser hiding its address bar does not leave a strip of
+     the viewport unpainted below the map */
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
+  /* the map eats every touch it gets; this stops the page itself from being
+     rubber-banded or pull-to-refreshed underneath it */
+  overscroll-behavior: none;
 }
 
 /* Japanese, Korean and Chinese need their own stacks: the Latin display face
@@ -35,12 +41,22 @@ html[lang="ja"] { --display: "Yu Gothic UI", "Meiryo UI", system-ui, sans-serif;
 html[lang="ko"] { --display: "Malgun Gothic", system-ui, sans-serif; }
 html[lang="zh-Hans"] { --display: "Microsoft YaHei UI", system-ui, sans-serif; }
 
-.app { display: grid; grid-template-columns: 336px 1fr; height: 100vh; }
+.app {
+  display: grid;
+  grid-template-columns: 336px 1fr;
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* Chrome for the drawer. None of it exists on a wide screen, where the rail is
+   simply the left column and there is nothing to open or close. */
+.menubtn, .railclose, .scrim { display: none; }
 
 .boot {
   display: grid;
   place-items: center;
   height: 100vh;
+  height: 100dvh;
   color: var(--muted);
   font-family: var(--display);
   letter-spacing: 0.09em;
@@ -67,7 +83,7 @@ html[lang="zh-Hans"] { --display: "Microsoft YaHei UI", system-ui, sans-serif; }
   overflow-y: auto;
 }
 
-.brand { padding: 17px 18px 13px; border-bottom: 1px solid var(--line); }
+.brand { padding: 17px 18px 13px; border-bottom: 1px solid var(--line); position: relative; }
 .brand .wordmark {
   margin: 0 0 4px;
   font-family: var(--mono);
@@ -231,7 +247,16 @@ html[lang="zh-Hans"] { --display: "Microsoft YaHei UI", system-ui, sans-serif; }
 }
 
 .stage { position: relative; overflow: hidden; background: #05070b; }
-canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* the renderer handles pan, pinch and twist itself; leaving any of them to
+     the browser would mean the gesture doing two things at once */
+  touch-action: none;
+}
 #gl { cursor: grab; background: #05070b; }
 #cv { cursor: grab; background: transparent; }
 canvas.grabbing { cursor: grabbing; }
@@ -255,6 +280,21 @@ canvas.grabbing { cursor: grabbing; }
   font-variant-numeric: tabular-nums;
 }
 .readout em { color: var(--dim); font-style: normal; }
+
+/* The gesture legend that stands where the readout stands on a mouse. It is
+   inside .hud, so it inherits the same pointer-events: none -- a note over the
+   map must never be something you can accidentally grab instead of the map. */
+.gestures {
+  background: rgba(10, 13, 19, 0.92);
+  border: 1px solid var(--line);
+  padding: 6px 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.65;
+  color: var(--muted);
+  text-align: right;
+}
+.gestures p { margin: 0; white-space: nowrap; }
 
 .zoomers { position: absolute; left: 14px; bottom: 14px; display: flex; gap: 6px; }
 .zoomers button {
@@ -280,7 +320,8 @@ canvas.grabbing { cursor: grabbing; }
    underneath is listening for. */
 .tip {
   position: absolute;
-  max-width: 330px;
+  /* Stage.tsx keeps the tooltip on screen and needs to know this number. */
+  max-width: min(300px, calc(100% - 16px));
   background: rgba(10, 13, 19, 0.94);
   border: 1px solid var(--line);
   padding: 9px 12px;
@@ -303,11 +344,101 @@ canvas.grabbing { cursor: grabbing; }
 :focus-visible { outline: 2px solid var(--live); outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 
-/* Narrow screens: the rail becomes a scrollable band above the map instead of
-   a column beside it. The arena still gets the majority of the height, which
-   is the only thing that matters on a phone. */
+/* Which set of control hints to show. The pointer, not the width: a small
+   window on a desktop still has a wheel, and a large tablet still does not. */
+.bytouch { display: none; }
+@media (pointer: coarse) {
+  .bymouse { display: none; }
+  .bytouch { display: block; }
+  /* pinching zooms, so the two buttons that only did that are chrome over the
+     map for nothing. Recentre stays: no gesture gets the view back. */
+  .zoomers button:not(.wide) { display: none; }
+}
+
+/* Narrow screens: the rail slides in over the map instead of sitting beside it.
+   Splitting the height between the two was the wrong trade -- an arena is a
+   plan you read by area, and half a phone screen is not enough of it, while the
+   controls are only wanted for the few seconds it takes to use them. So the map
+   gets the whole viewport and the rail comes back on demand.
+   The rail is moved off-screen rather than removed: it holds the h1 and the
+   descriptive copy, and those have to stay in the page for a crawler. */
 @media (max-width: 860px) {
-  .app { grid-template-columns: 1fr; grid-template-rows: minmax(0, 42vh) 1fr; }
-  .rail { border-right: none; border-bottom: 1px solid var(--line); }
-  .tip { max-width: 260px; }
+  .app { grid-template-columns: 1fr; grid-template-rows: 1fr; }
+
+  .menubtn, .railclose { display: grid; }
+  .scrim { display: block; }
+
+  .rail {
+    position: fixed;
+    z-index: 30;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: min(86vw, 340px);
+    transform: translateX(-101%);
+    transition: transform 0.22s ease;
+    overscroll-behavior: contain;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .rail.open { transform: none; box-shadow: 20px 0 60px rgba(0, 0, 0, 0.55); }
+
+  .scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    background: rgba(5, 7, 11, 0.62);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.22s ease;
+  }
+  .app[data-menu="open"] .scrim { opacity: 1; pointer-events: auto; }
+
+  .menubtn {
+    position: fixed;
+    z-index: 15;
+    left: calc(12px + env(safe-area-inset-left));
+    top: calc(12px + env(safe-area-inset-top));
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    background: rgba(10, 13, 19, 0.92);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .menubtn svg { width: 21px; height: 21px; stroke: currentColor; stroke-width: 2; fill: none; }
+  .app[data-menu="open"] .menubtn { opacity: 0; pointer-events: none; }
+
+  .railclose {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    width: 34px;
+    height: 34px;
+    place-items: center;
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .railclose svg { width: 17px; height: 17px; stroke: currentColor; stroke-width: 2; fill: none; }
+  .brand { padding-right: 54px; }
+
+  /* clear of the menu button, and of a notch if there is one */
+  .stagehead {
+    left: calc(64px + env(safe-area-inset-left));
+    top: calc(22px + env(safe-area-inset-top));
+  }
+  .zoomers {
+    left: calc(12px + env(safe-area-inset-left));
+    bottom: calc(12px + env(safe-area-inset-bottom));
+  }
+  .zoomers button { height: 38px; }
+  .hud {
+    right: calc(12px + env(safe-area-inset-right));
+    bottom: calc(12px + env(safe-area-inset-bottom));
+  }
+  /* narrow enough that the readout and the recentre button share the bottom
+     edge instead of meeting in the middle */
+  .readout { font-size: 10.5px; padding: 5px 8px; }
 }

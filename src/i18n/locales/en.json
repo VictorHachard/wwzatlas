@@ -12,6 +12,8 @@
   "nav.layers": "Layers",
   "nav.objects": "Game objects",
   "nav.language": "Language",
+  "nav.menu": "Menu",
+  "nav.close": "Close",
 
   "map.jerusalem": "Jerusalem",
   "map.newYork": "New York",
@@ -46,6 +48,11 @@
   "hud.zoomOut": "Zoom out",
   "hud.camera": "camera",
   "hint.controls": "Drag to pan, scroll to zoom, right-click to tilt. “Recenter” returns to the top-down view.",
+  "hint.controlsTouch": "One finger drags the map, pinch to zoom, twist to turn, two fingers to tilt. Tap a marker to read it.",
+  "touch.pan": "1 finger · move",
+  "touch.zoom": "Pinch · zoom",
+  "touch.tilt": "2 fingers · turn, tilt",
+  "touch.tap": "Tap · details",
 
   "tip.zone": "zone",
   "tip.level": "lvl",

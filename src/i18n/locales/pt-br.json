@@ -12,6 +12,8 @@
   "nav.layers": "Camadas",
   "nav.objects": "Objetos do jogo",
   "nav.language": "Idioma",
+  "nav.menu": "Menu",
+  "nav.close": "Fechar",
 
   "map.jerusalem": "Jerusalém",
   "map.newYork": "Nova York",
@@ -46,6 +48,11 @@
   "hud.zoomOut": "Afastar",
   "hud.camera": "câmera",
   "hint.controls": "Arraste para mover, role para aproximar, botão direito para inclinar. “Recentralizar” volta à vista de cima.",
+  "hint.controlsTouch": "Um dedo move o mapa, pince para aproximar, gire para girar, dois dedos para inclinar. Toque em um marcador para lê-lo.",
+  "touch.pan": "1 dedo · mover",
+  "touch.zoom": "Pinçar · zoom",
+  "touch.tilt": "2 dedos · girar, inclinar",
+  "touch.tap": "Tocar · detalhes",
 
   "tip.zone": "zona",
   "tip.level": "nív",

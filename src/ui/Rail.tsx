@@ -9,6 +9,9 @@ import type { AtlasIndex, MapDoc } from "../data/loader";
 import { LANGS, currentLang, t, num, urlFor } from "../i18n";
 
 interface Props {
+  id: string;
+  /** narrow screens only: the rail is a drawer there, a column everywhere else */
+  open: boolean;
   index: AtlasIndex;
   doc: MapDoc | null;
   slug: string;
@@ -17,6 +20,7 @@ interface Props {
   nav: boolean;
   zones: boolean;
   onSlug: (s: string) => void;
+  onClose: () => void;
   onPrefetch: (s: string) => void;
   onCats: (s: Set<string>) => void;
   onFloors: (s: Set<number>) => void;
@@ -36,12 +40,17 @@ export function Rail(p: Props) {
   const lang = currentLang();
 
   return (
-    <aside class="rail">
+    <aside class={"rail" + (p.open ? " open" : "")} id={p.id}>
       {/* The wordmark is the name; the h1 is what people actually type into a
           search box. Keeping them separate means the page can be called Horde
           Mode Atlas without the only heading on it being a name nobody looks
           for. */}
       <div class="brand">
+        <button class="railclose" aria-label={t("nav.close")} onClick={p.onClose}>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </button>
         <p class="wordmark">{t("app.title")}</p>
         <h1>{t("seo.h1")}</h1>
         <p>{t("app.tagline")}</p>
@@ -137,8 +146,12 @@ export function Rail(p: Props) {
         </div>
       </section>
 
+      {/* Both sets of controls are in the page and CSS shows the one that
+          matches the pointer, rather than a media query the renderer would have
+          to agree with or a user-agent guess that gets a hybrid laptop wrong. */}
       <section class="sect">
-        <p class="hint">{t("hint.controls")}</p>
+        <p class="hint bymouse">{t("hint.controls")}</p>
+        <p class="hint bytouch">{t("hint.controlsTouch")}</p>
       </section>
 
       <section class="sect">

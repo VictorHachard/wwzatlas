@@ -12,6 +12,8 @@
   "nav.layers": "Calques",
   "nav.objects": "Objets du jeu",
   "nav.language": "Langue",
+  "nav.menu": "Menu",
+  "nav.close": "Fermer",
 
   "map.jerusalem": "Jérusalem",
   "map.newYork": "New York",
@@ -46,6 +48,11 @@
   "hud.zoomOut": "Dézoomer",
   "hud.camera": "caméra",
   "hint.controls": "Glisser pour déplacer, molette pour zoomer, clic droit pour incliner. « Recadrer » revient à la vue du dessus.",
+  "hint.controlsTouch": "Un doigt déplace la carte, pincer pour zoomer, pivoter pour tourner, deux doigts pour incliner. Touchez un marqueur pour le lire.",
+  "touch.pan": "1 doigt · déplacer",
+  "touch.zoom": "Pincer · zoom",
+  "touch.tilt": "2 doigts · tourner, incliner",
+  "touch.tap": "Toucher · détails",
 
   "tip.zone": "zone",
   "tip.level": "niv",
