@@ -1,0 +1,65 @@
+{
+  "app.title": "Horde Mode Atlas",
+  "app.tagline": "Widoki z góry aren trybu Horda w World War Z",
+
+  "seo.h1": "Mapy trybu Horda w World War Z",
+  "seo.mapHeading": "{name} - mapa trybu Horda w World War Z",
+  "seo.about": "Każda z pięciu map trybu Horda w World War Z zebranych tutaj to rekonstrukcja areny z lotu ptaka: gdzie pojawiają się ładunki wyburzeniowe, gdzie stoją sklepy i skrzynie, gdzie są bramy, karabiny maszynowe i ogrodzenia pod napięciem oraz po jakich powierzchniach horda faktycznie może chodzić.",
+
+  "meta.description": "Interaktywne mapy pięciu aren trybu Horda w World War Z: ładunki wyburzeniowe, sklepy, skrzynie, karabiny maszynowe, punkty odrodzenia i powierzchnia do chodzenia.",
+
+  "nav.arena": "Arena",
+  "nav.layers": "Warstwy",
+  "nav.objects": "Obiekty w grze",
+  "nav.language": "Język",
+
+  "map.jerusalem": "Jerozolima",
+  "map.newYork": "Nowy Jork",
+  "map.rome": "Rzym",
+  "map.tokyo": "Tokio",
+  "map.camp": "Lotnisko / Obóz",
+
+  "floor.level": "Poziom {n}",
+  "layer.navmesh": "Navmesh na wierzchu",
+  "layer.zones": "Nazwy stref",
+
+  "cat.charge": "Ładunek wyburzeniowy",
+  "cat.lootbox": "Skrzynia z łupem",
+  "cat.shop": "Sklep",
+  "cat.gate": "Brama",
+  "cat.front": "Linia frontu",
+  "cat.medkit": "Apteczka",
+  "cat.ammo": "Amunicja",
+  "cat.weapon": "Broń",
+  "cat.supplies": "Zaopatrzenie",
+  "cat.corpse": "Przeszukiwalne zwłoki",
+  "cat.mg": "Karabin maszynowy",
+  "cat.zspawn": "Odrodzenie zombie",
+  "cat.pspawn": "Odrodzenie graczy",
+  "cat.barricade": "Barykada",
+  "cat.wire": "Drut kolczasty",
+  "cat.grid": "Ogrodzenie elektryczne",
+  "cat.ladder": "Drabina",
+
+  "hud.recenter": "Wyśrodkuj",
+  "hud.zoomIn": "Przybliż",
+  "hud.zoomOut": "Oddal",
+  "hud.camera": "kamera",
+  "hint.controls": "Przeciągnij, aby przesunąć, kółko myszy przybliża, prawy przycisk pochyla. „Wyśrodkuj” wraca do widoku z góry.",
+
+  "tip.zone": "strefa",
+  "tip.level": "poz.",
+  "tip.andOthers": "i {n} więcej w promieniu 6 m",
+
+  "stats.placed": "{n} rozmieszczonych",
+  "stats.size": "{w} × {h} m",
+
+  "state.loading": "Wczytywanie…",
+  "error.load": "Nie udało się wczytać tej areny.",
+  "error.webgl": "WebGL jest niedostępny w tej przeglądarce.",
+
+  "about.title": "O projekcie",
+  "about.body": "Nieoficjalny projekt fanowski. Każda arena została odtworzona z brył kolizji i navmesha lokalnej kopii gry. To rekonstrukcja, a nie oficjalny dokument.",
+  "about.disclaimer": "Brak powiązania z Saber Interactive ani Focus Entertainment. World War Z i powiązane znaki należą do ich właścicieli.",
+  "about.source": "Kod źródłowy"
+}

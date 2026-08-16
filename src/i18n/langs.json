@@ -1,0 +1,13 @@
+[
+  { "seg": "", "tag": "en", "name": "English" },
+  { "seg": "fr", "tag": "fr", "name": "Français" },
+  { "seg": "de", "tag": "de", "name": "Deutsch" },
+  { "seg": "es", "tag": "es", "name": "Español" },
+  { "seg": "it", "tag": "it", "name": "Italiano" },
+  { "seg": "pl", "tag": "pl", "name": "Polski" },
+  { "seg": "pt-br", "tag": "pt-BR", "name": "Português (BR)" },
+  { "seg": "ru", "tag": "ru", "name": "Русский" },
+  { "seg": "ja", "tag": "ja", "name": "日本語" },
+  { "seg": "ko", "tag": "ko", "name": "한국어" },
+  { "seg": "zh-hans", "tag": "zh-Hans", "name": "简体中文" }
+]

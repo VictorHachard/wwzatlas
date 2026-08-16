@@ -1,0 +1,65 @@
+{
+  "app.title": "Horde Mode Atlas",
+  "app.tagline": "World War Z ホードモードのアリーナ俯瞰マップ",
+
+  "seo.h1": "World War Z ホードモード マップ",
+  "seo.mapHeading": "{name} - World War Z ホードモードのマップ",
+  "seo.about": "ここにある World War Z ホードモードの5つのマップは、いずれもアリーナを俯瞰で再構成したものです。爆破チャージの出現位置、ショップと物資箱の場所、ゲート・機関銃・電気柵の配置、そしてゾンビの群れが実際に歩ける面がわかります。",
+
+  "meta.description": "World War Z ホードモード全5アリーナのインタラクティブ俯瞰マップ。爆破チャージ、ショップ、物資箱、機関銃、スポーン地点、歩行可能面を表示。",
+
+  "nav.arena": "アリーナ",
+  "nav.layers": "レイヤー",
+  "nav.objects": "ゲームオブジェクト",
+  "nav.language": "言語",
+
+  "map.jerusalem": "エルサレム",
+  "map.newYork": "ニューヨーク",
+  "map.rome": "ローマ",
+  "map.tokyo": "東京",
+  "map.camp": "空港 / キャンプ",
+
+  "floor.level": "レベル {n}",
+  "layer.navmesh": "ナビメッシュを重ねる",
+  "layer.zones": "ゾーン名",
+
+  "cat.charge": "爆破チャージ",
+  "cat.lootbox": "物資箱",
+  "cat.shop": "ショップ",
+  "cat.gate": "ゲート",
+  "cat.front": "前線",
+  "cat.medkit": "メドキット",
+  "cat.ammo": "弾薬",
+  "cat.weapon": "武器",
+  "cat.supplies": "補給物資",
+  "cat.corpse": "探索可能な死体",
+  "cat.mg": "機関銃",
+  "cat.zspawn": "ゾンビのスポーン",
+  "cat.pspawn": "プレイヤーのスポーン",
+  "cat.barricade": "バリケード",
+  "cat.wire": "有刺鉄線",
+  "cat.grid": "電気柵",
+  "cat.ladder": "はしご",
+
+  "hud.recenter": "中央に戻す",
+  "hud.zoomIn": "拡大",
+  "hud.zoomOut": "縮小",
+  "hud.camera": "カメラ",
+  "hint.controls": "ドラッグで移動、ホイールで拡大縮小、右クリックで傾け。「中央に戻す」で俯瞰視点に戻ります。",
+
+  "tip.zone": "ゾーン",
+  "tip.level": "階",
+  "tip.andOthers": "他 {n} 件（6 m 以内）",
+
+  "stats.placed": "{n} 個配置",
+  "stats.size": "{w} × {h} m",
+
+  "state.loading": "読み込み中…",
+  "error.load": "このアリーナを読み込めませんでした。",
+  "error.webgl": "このブラウザーでは WebGL を利用できません。",
+
+  "about.title": "このサイトについて",
+  "about.body": "非公式のファンプロジェクトです。各アリーナはローカルにあるゲームのコリジョン形状とナビメッシュから復元したもので、公式資料ではありません。",
+  "about.disclaimer": "Saber Interactive および Focus Entertainment とは無関係です。World War Z および関連する商標は各権利者に帰属します。",
+  "about.source": "ソースコード"
+}

@@ -1,0 +1,65 @@
+{
+  "app.title": "Horde Mode Atlas",
+  "app.tagline": "Draufsichten der Horden-Modus-Arenen von World War Z",
+
+  "seo.h1": "World War Z Horden-Modus Karten",
+  "seo.mapHeading": "{name} - World War Z Horden-Modus Karte",
+  "seo.about": "Jede der fünf World War Z Horden-Modus-Karten hier ist eine Rekonstruktion der Arena aus der Vogelperspektive: wo Sprengladungen erscheinen, wo Shops und Lootboxen stehen, wo Tore, MGs und Elektrozäune sind, und welche Flächen die Horde tatsächlich begehen kann.",
+
+  "meta.description": "Interaktive Draufsichten der fünf Horden-Modus-Arenen von World War Z: Sprengladungen, Shops, Lootboxen, MGs, Spawnpunkte und begehbare Fläche.",
+
+  "nav.arena": "Arena",
+  "nav.layers": "Ebenen",
+  "nav.objects": "Spielobjekte",
+  "nav.language": "Sprache",
+
+  "map.jerusalem": "Jerusalem",
+  "map.newYork": "New York",
+  "map.rome": "Rom",
+  "map.tokyo": "Tokio",
+  "map.camp": "Flughafen / Camp",
+
+  "floor.level": "Ebene {n}",
+  "layer.navmesh": "Navmesh darüber",
+  "layer.zones": "Zonennamen",
+
+  "cat.charge": "Sprengladung",
+  "cat.lootbox": "Lootbox",
+  "cat.shop": "Shop",
+  "cat.gate": "Tor",
+  "cat.front": "Frontlinie",
+  "cat.medkit": "Medipack",
+  "cat.ammo": "Munition",
+  "cat.weapon": "Waffe",
+  "cat.supplies": "Nachschub",
+  "cat.corpse": "Durchsuchbare Leiche",
+  "cat.mg": "Maschinengewehr",
+  "cat.zspawn": "Zombie-Spawn",
+  "cat.pspawn": "Spieler-Spawn",
+  "cat.barricade": "Barrikade",
+  "cat.wire": "Stacheldraht",
+  "cat.grid": "Elektrozaun",
+  "cat.ladder": "Leiter",
+
+  "hud.recenter": "Zentrieren",
+  "hud.zoomIn": "Heranzoomen",
+  "hud.zoomOut": "Herauszoomen",
+  "hud.camera": "Kamera",
+  "hint.controls": "Ziehen zum Verschieben, Mausrad zum Zoomen, Rechtsklick zum Neigen. „Zentrieren“ kehrt zur Draufsicht zurück.",
+
+  "tip.zone": "Zone",
+  "tip.level": "Eb.",
+  "tip.andOthers": "und {n} weitere im Umkreis von 6 m",
+
+  "stats.placed": "{n} platziert",
+  "stats.size": "{w} × {h} m",
+
+  "state.loading": "Wird geladen…",
+  "error.load": "Diese Arena konnte nicht geladen werden.",
+  "error.webgl": "WebGL ist in diesem Browser nicht verfügbar.",
+
+  "about.title": "Über das Projekt",
+  "about.body": "Inoffizielles Fanprojekt. Jede Arena ist aus den Kollisionsvolumen und dem Navmesh einer lokalen Kopie des Spiels rekonstruiert. Das ist eine Rekonstruktion, kein offizielles Dokument.",
+  "about.disclaimer": "Keine Verbindung zu Saber Interactive oder Focus Entertainment. World War Z und alle zugehörigen Marken gehören ihren jeweiligen Inhabern.",
+  "about.source": "Quellcode"
+}

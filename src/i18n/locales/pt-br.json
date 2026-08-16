@@ -1,0 +1,65 @@
+{
+  "app.title": "Horde Mode Atlas",
+  "app.tagline": "Vistas de cima das arenas do Modo Horda de World War Z",
+
+  "seo.h1": "Mapas do Modo Horda de World War Z",
+  "seo.mapHeading": "{name} - mapa do Modo Horda de World War Z",
+  "seo.about": "Cada um dos cinco mapas do Modo Horda de World War Z reunidos aqui é uma reconstrução da arena vista de cima: onde surgem as cargas de demolição, onde ficam as lojas e as caixas de suprimentos, onde estão os portões, as metralhadoras e as cercas elétricas, e por quais superfícies a horda realmente consegue andar.",
+
+  "meta.description": "Mapas interativos das cinco arenas do Modo Horda de World War Z: cargas de demolição, lojas, caixas de suprimentos, metralhadoras, pontos de surgimento e área caminhável.",
+
+  "nav.arena": "Arena",
+  "nav.layers": "Camadas",
+  "nav.objects": "Objetos do jogo",
+  "nav.language": "Idioma",
+
+  "map.jerusalem": "Jerusalém",
+  "map.newYork": "Nova York",
+  "map.rome": "Roma",
+  "map.tokyo": "Tóquio",
+  "map.camp": "Aeroporto / Acampamento",
+
+  "floor.level": "Nível {n}",
+  "layer.navmesh": "Navmesh por cima",
+  "layer.zones": "Nomes das zonas",
+
+  "cat.charge": "Carga de demolição",
+  "cat.lootbox": "Caixa de suprimentos",
+  "cat.shop": "Loja",
+  "cat.gate": "Portão",
+  "cat.front": "Linha de frente",
+  "cat.medkit": "Kit médico",
+  "cat.ammo": "Munição",
+  "cat.weapon": "Arma",
+  "cat.supplies": "Suprimentos",
+  "cat.corpse": "Corpo revistável",
+  "cat.mg": "Metralhadora",
+  "cat.zspawn": "Surgimento de zumbis",
+  "cat.pspawn": "Surgimento de jogadores",
+  "cat.barricade": "Barricada",
+  "cat.wire": "Arame farpado",
+  "cat.grid": "Cerca elétrica",
+  "cat.ladder": "Escada",
+
+  "hud.recenter": "Recentralizar",
+  "hud.zoomIn": "Aproximar",
+  "hud.zoomOut": "Afastar",
+  "hud.camera": "câmera",
+  "hint.controls": "Arraste para mover, role para aproximar, botão direito para inclinar. “Recentralizar” volta à vista de cima.",
+
+  "tip.zone": "zona",
+  "tip.level": "nív",
+  "tip.andOthers": "e mais {n} a menos de 6 m",
+
+  "stats.placed": "{n} posicionados",
+  "stats.size": "{w} × {h} m",
+
+  "state.loading": "Carregando…",
+  "error.load": "Não foi possível carregar esta arena.",
+  "error.webgl": "WebGL não está disponível neste navegador.",
+
+  "about.title": "Sobre",
+  "about.body": "Projeto de fãs não oficial. Cada arena é reconstruída a partir dos volumes de colisão e do navmesh de uma cópia local do jogo. É uma reconstrução, não um documento oficial.",
+  "about.disclaimer": "Sem afiliação com a Saber Interactive ou a Focus Entertainment. World War Z e as marcas relacionadas pertencem aos seus respectivos donos.",
+  "about.source": "Código-fonte"
+}

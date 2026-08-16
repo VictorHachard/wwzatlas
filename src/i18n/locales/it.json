@@ -1,0 +1,65 @@
+{
+  "app.title": "Horde Mode Atlas",
+  "app.tagline": "Viste dall'alto delle arene della Modalità Orda di World War Z",
+
+  "seo.h1": "Mappe della Modalità Orda di World War Z",
+  "seo.mapHeading": "{name} - mappa della Modalità Orda di World War Z",
+  "seo.about": "Ognuna delle cinque mappe della Modalità Orda di World War Z raccolte qui è una ricostruzione dall'alto dell'arena: dove compaiono le cariche da sfondamento, dove sono i negozi e le lootbox, dove si trovano cancelli, mitragliatrici e recinti elettrificati, e quali superfici l'orda può davvero percorrere.",
+
+  "meta.description": "Mappe interattive delle cinque arene della Modalità Orda di World War Z: cariche da sfondamento, negozi, lootbox, mitragliatrici, punti di comparsa e superficie percorribile.",
+
+  "nav.arena": "Arena",
+  "nav.layers": "Livelli",
+  "nav.objects": "Oggetti di gioco",
+  "nav.language": "Lingua",
+
+  "map.jerusalem": "Gerusalemme",
+  "map.newYork": "New York",
+  "map.rome": "Roma",
+  "map.tokyo": "Tokyo",
+  "map.camp": "Aeroporto / Campo",
+
+  "floor.level": "Piano {n}",
+  "layer.navmesh": "Navmesh sovrapposto",
+  "layer.zones": "Nomi delle zone",
+
+  "cat.charge": "Carica da sfondamento",
+  "cat.lootbox": "Lootbox",
+  "cat.shop": "Negozio",
+  "cat.gate": "Cancello",
+  "cat.front": "Linea del fronte",
+  "cat.medkit": "Kit medico",
+  "cat.ammo": "Munizioni",
+  "cat.weapon": "Arma",
+  "cat.supplies": "Rifornimenti",
+  "cat.corpse": "Cadavere perquisibile",
+  "cat.mg": "Mitragliatrice",
+  "cat.zspawn": "Comparsa zombie",
+  "cat.pspawn": "Comparsa giocatori",
+  "cat.barricade": "Barricata",
+  "cat.wire": "Filo spinato",
+  "cat.grid": "Recinto elettrificato",
+  "cat.ladder": "Scala",
+
+  "hud.recenter": "Ricentra",
+  "hud.zoomIn": "Ingrandisci",
+  "hud.zoomOut": "Riduci",
+  "hud.camera": "camera",
+  "hint.controls": "Trascina per spostare, rotellina per zoomare, tasto destro per inclinare. «Ricentra» torna alla vista dall'alto.",
+
+  "tip.zone": "zona",
+  "tip.level": "piano",
+  "tip.andOthers": "e altri {n} entro 6 m",
+
+  "stats.placed": "{n} posizionati",
+  "stats.size": "{w} × {h} m",
+
+  "state.loading": "Caricamento…",
+  "error.load": "Non è stato possibile caricare questa arena.",
+  "error.webgl": "WebGL non è disponibile in questo browser.",
+
+  "about.title": "Informazioni",
+  "about.body": "Progetto amatoriale non ufficiale. Ogni arena è ricostruita dai volumi di collisione e dal navmesh di una copia locale del gioco: è una ricostruzione, non un documento ufficiale.",
+  "about.disclaimer": "Nessuna affiliazione con Saber Interactive o Focus Entertainment. World War Z e i marchi correlati appartengono ai rispettivi proprietari.",
+  "about.source": "Codice sorgente"
+}

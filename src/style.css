@@ -1,0 +1,313 @@
+/* Carried over from the standalone artifact. The palette is built around the
+   fact that the map itself is light on near-black: every panel stays darker
+   than the viewport so the arena is the brightest thing on screen. */
+:root {
+  --ground: #0a0d13;
+  --panel: #121821;
+  --panel-2: #0e141c;
+  --line: #1f2b3a;
+  --ink: #dce4ef;
+  --muted: #78899f;
+  --dim: #4a5768;
+  --live: #ff6b4a;
+  --display: Bahnschrift, "DIN Alternate", "Segoe UI Variable Display", system-ui, sans-serif;
+  --mono: "Cascadia Mono", Consolas, ui-monospace, monospace;
+  --body: "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 14px;
+  line-height: 1.5;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Japanese, Korean and Chinese need their own stacks: the Latin display face
+   has no CJK coverage and the browser would fall back per glyph, which mixes
+   two different weights inside one label. */
+html[lang="ja"] { --display: "Yu Gothic UI", "Meiryo UI", system-ui, sans-serif; }
+html[lang="ko"] { --display: "Malgun Gothic", system-ui, sans-serif; }
+html[lang="zh-Hans"] { --display: "Microsoft YaHei UI", system-ui, sans-serif; }
+
+.app { display: grid; grid-template-columns: 336px 1fr; height: 100vh; }
+
+.boot {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  color: var(--muted);
+  font-family: var(--display);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.banner {
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  background: #2a1512;
+  border: 1px solid #6b2f22;
+  color: #ffb9a6;
+  padding: 9px 15px;
+  font-size: 13px;
+}
+
+.rail {
+  background: var(--panel);
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.brand { padding: 17px 18px 13px; border-bottom: 1px solid var(--line); }
+.brand .wordmark {
+  margin: 0 0 4px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--live);
+}
+.brand h1 {
+  font-family: var(--display);
+  font-size: 21px;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.brand p { margin: 5px 0 0; color: var(--muted); font-size: 12.5px; }
+
+/* Sits over the arena as a caption. It must not intercept the drag. */
+.stagehead {
+  position: absolute;
+  left: 14px;
+  top: 12px;
+  margin: 0;
+  font-family: var(--display);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-shadow: 0 1px 3px #05070b, 0 0 10px #05070b;
+  pointer-events: none;
+  max-width: calc(100% - 28px);
+}
+
+.sect {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+/* The rail's headings are control-group labels, not page structure: the only
+   h1 is the topic and the only h2 is the arena on screen, so the outline a
+   crawler reads is the two things the page is actually about. */
+.sect > h3 {
+  font-family: var(--display);
+  font-size: 11px;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dim);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+.sect > h3 span {
+  font-family: var(--mono);
+  letter-spacing: 0;
+  color: var(--muted);
+  font-size: 10.5px;
+  text-transform: none;
+}
+
+.maps { display: flex; flex-direction: column; gap: 4px; }
+.mapbtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  padding: 8px 11px;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  border-left: 3px solid transparent;
+}
+.mapbtn:hover { background: #18202c; }
+.mapbtn[aria-pressed="true"] { border-left-color: var(--live); background: #1a2331; }
+.mapbtn b {
+  font-family: var(--display);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  font-size: 15px;
+}
+.mapbtn span { font-family: var(--mono); font-size: 10.5px; color: var(--muted); }
+
+.layers { display: flex; flex-direction: column; gap: 4px; }
+.layer {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  cursor: pointer;
+  padding: 6px 10px;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+}
+.layer input { accent-color: var(--live); margin: 0; cursor: pointer; flex: none; }
+.sw { width: 11px; height: 11px; border-radius: 2px; flex: none; }
+.layer .nm { font-family: var(--display); letter-spacing: 0.05em; font-size: 13.5px; }
+
+.cats { display: flex; flex-direction: column; gap: 3px; }
+.cat {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 5px 9px;
+  cursor: pointer;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+}
+.cat input { accent-color: var(--live); margin: 0; cursor: pointer; flex: none; }
+.dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  flex: none;
+  display: grid;
+  place-items: center;
+  font-family: var(--display);
+  font-size: 9px;
+  font-weight: 700;
+  color: #0a0d13;
+}
+.cat .nm {
+  font-family: var(--display);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cat .ct {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  flex: none;
+}
+
+.hint { color: var(--muted); font-size: 12px; margin: 0; }
+.hint.dim { color: var(--dim); font-size: 11.5px; }
+.hint a { color: var(--muted); }
+.about { border-bottom: none; }
+
+.langsel {
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  padding: 7px 9px;
+  cursor: pointer;
+}
+
+.stage { position: relative; overflow: hidden; background: #05070b; }
+canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+#gl { cursor: grab; background: #05070b; }
+#cv { cursor: grab; background: transparent; }
+canvas.grabbing { cursor: grabbing; }
+
+.hud {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 7px;
+  pointer-events: none;
+}
+.readout {
+  background: rgba(10, 13, 19, 0.92);
+  border: 1px solid var(--line);
+  padding: 7px 11px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-variant-numeric: tabular-nums;
+}
+.readout em { color: var(--dim); font-style: normal; }
+
+.zoomers { position: absolute; left: 14px; bottom: 14px; display: flex; gap: 6px; }
+.zoomers button {
+  width: 31px;
+  height: 31px;
+  background: rgba(10, 13, 19, 0.92);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 14px;
+  cursor: pointer;
+}
+.zoomers button.wide {
+  width: auto;
+  padding: 0 11px;
+  font-family: var(--display);
+  font-size: 11px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+/* Follows the cursor, so it must never eat the pointer events the canvas
+   underneath is listening for. */
+.tip {
+  position: absolute;
+  max-width: 330px;
+  background: rgba(10, 13, 19, 0.94);
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--ink);
+  pointer-events: none;
+}
+.tip b {
+  font-family: var(--display);
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 3px;
+  color: #fff;
+}
+.tip i { color: var(--muted); font-style: normal; }
+.tipname { color: var(--muted); margin-bottom: 2px; }
+
+:focus-visible { outline: 2px solid var(--live); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* Narrow screens: the rail becomes a scrollable band above the map instead of
+   a column beside it. The arena still gets the majority of the height, which
+   is the only thing that matters on a phone. */
+@media (max-width: 860px) {
+  .app { grid-template-columns: 1fr; grid-template-rows: minmax(0, 42vh) 1fr; }
+  .rail { border-right: none; border-bottom: 1px solid var(--line); }
+  .tip { max-width: 260px; }
+}

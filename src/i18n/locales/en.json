@@ -1,0 +1,65 @@
+{
+  "app.title": "Horde Mode Atlas",
+  "app.tagline": "Top-down maps of the World War Z Horde Mode arenas",
+
+  "seo.h1": "World War Z Horde Mode Maps",
+  "seo.mapHeading": "{name} - World War Z Horde Mode map",
+  "seo.about": "Each of the five World War Z Horde Mode maps here is a top-down reconstruction of the arena: where breaching charges spawn, where the shops and lootboxes are, where the gates, machine guns and electric fences stand, and which surfaces the horde can actually walk on.",
+
+  "meta.description": "Interactive top-down maps of the five World War Z Horde Mode arenas: breaching charges, shops, lootboxes, machine guns, spawns and the walkable navmesh.",
+
+  "nav.arena": "Arena",
+  "nav.layers": "Layers",
+  "nav.objects": "Game objects",
+  "nav.language": "Language",
+
+  "map.jerusalem": "Jerusalem",
+  "map.newYork": "New York",
+  "map.rome": "Rome",
+  "map.tokyo": "Tokyo",
+  "map.camp": "Airport / Camp",
+
+  "floor.level": "Level {n}",
+  "layer.navmesh": "Navmesh overlay",
+  "layer.zones": "Zone names",
+
+  "cat.charge": "Breaching charge",
+  "cat.lootbox": "Lootbox",
+  "cat.shop": "Shop",
+  "cat.gate": "Gate",
+  "cat.front": "Front line",
+  "cat.medkit": "Medkit",
+  "cat.ammo": "Ammo",
+  "cat.weapon": "Weapon",
+  "cat.supplies": "Supplies",
+  "cat.corpse": "Searchable corpse",
+  "cat.mg": "Machine gun",
+  "cat.zspawn": "Zombie spawn",
+  "cat.pspawn": "Player spawn",
+  "cat.barricade": "Barricade",
+  "cat.wire": "Barbed wire",
+  "cat.grid": "Electric fence",
+  "cat.ladder": "Ladder",
+
+  "hud.recenter": "Recenter",
+  "hud.zoomIn": "Zoom in",
+  "hud.zoomOut": "Zoom out",
+  "hud.camera": "camera",
+  "hint.controls": "Drag to pan, scroll to zoom, right-click to tilt. “Recenter” returns to the top-down view.",
+
+  "tip.zone": "zone",
+  "tip.level": "lvl",
+  "tip.andOthers": "and {n} more within 6 m",
+
+  "stats.placed": "{n} placed",
+  "stats.size": "{w} × {h} m",
+
+  "state.loading": "Loading…",
+  "error.load": "This arena could not be loaded.",
+  "error.webgl": "WebGL is not available in this browser.",
+
+  "about.title": "About",
+  "about.body": "Unofficial fan project. Each arena is rebuilt from the collision volumes and the navmesh of a local copy of the game. It is a reconstruction, not an official document.",
+  "about.disclaimer": "Not affiliated with Saber Interactive or Focus Entertainment. World War Z and all related marks belong to their respective owners.",
+  "about.source": "Source code"
+}

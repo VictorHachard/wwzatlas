@@ -1,0 +1,65 @@
+{
+  "app.title": "Horde Mode Atlas",
+  "app.tagline": "《僵尸世界大战》尸潮模式竞技场俯视地图",
+
+  "seo.h1": "《僵尸世界大战》尸潮模式地图",
+  "seo.mapHeading": "{name} - 《僵尸世界大战》尸潮模式地图",
+  "seo.about": "本站收录的五张《僵尸世界大战》（World War Z）尸潮模式地图，都是竞技场的俯视重建图：爆破炸药的刷新位置、商店与补给箱的所在、闸门与机枪和电网的布置，以及尸潮真正能够行走的区域。",
+
+  "meta.description": "《僵尸世界大战》尸潮模式五张竞技场的交互式俯视地图：爆破炸药、商店、补给箱、机枪、刷新点与可行走区域。",
+
+  "nav.arena": "竞技场",
+  "nav.layers": "图层",
+  "nav.objects": "游戏物件",
+  "nav.language": "语言",
+
+  "map.jerusalem": "耶路撒冷",
+  "map.newYork": "纽约",
+  "map.rome": "罗马",
+  "map.tokyo": "东京",
+  "map.camp": "机场 / 营地",
+
+  "floor.level": "层 {n}",
+  "layer.navmesh": "叠加导航网格",
+  "layer.zones": "区域名称",
+
+  "cat.charge": "爆破炸药",
+  "cat.lootbox": "补给箱",
+  "cat.shop": "商店",
+  "cat.gate": "闸门",
+  "cat.front": "前线",
+  "cat.medkit": "医疗包",
+  "cat.ammo": "弹药",
+  "cat.weapon": "武器",
+  "cat.supplies": "补给",
+  "cat.corpse": "可搜刮尸体",
+  "cat.mg": "机枪",
+  "cat.zspawn": "僵尸刷新点",
+  "cat.pspawn": "玩家出生点",
+  "cat.barricade": "路障",
+  "cat.wire": "铁丝网",
+  "cat.grid": "电网",
+  "cat.ladder": "梯子",
+
+  "hud.recenter": "回正视角",
+  "hud.zoomIn": "放大",
+  "hud.zoomOut": "缩小",
+  "hud.camera": "摄像机",
+  "hint.controls": "拖动平移，滚轮缩放，右键倾斜。点击“回正视角”返回俯视图。",
+
+  "tip.zone": "区域",
+  "tip.level": "层",
+  "tip.andOthers": "另有 {n} 个在 6 m 内",
+
+  "stats.placed": "已放置 {n} 个",
+  "stats.size": "{w} × {h} m",
+
+  "state.loading": "加载中…",
+  "error.load": "无法加载该竞技场。",
+  "error.webgl": "此浏览器不支持 WebGL。",
+
+  "about.title": "关于",
+  "about.body": "非官方粉丝项目。每张竞技场地图均由本地游戏文件中的碰撞体和导航网格重建而成，属于重构结果，并非官方资料。",
+  "about.disclaimer": "与 Saber Interactive 及 Focus Entertainment 无关。《僵尸世界大战》及相关商标归各自权利人所有。",
+  "about.source": "源代码"
+}

@@ -1,0 +1,65 @@
+{
+  "app.title": "Horde Mode Atlas",
+  "app.tagline": "Vues du dessus des arènes Horde de World War Z",
+
+  "seo.h1": "Cartes du mode Horde de World War Z",
+  "seo.mapHeading": "{name} - carte du mode Horde de World War Z",
+  "seo.about": "Chacune des cinq cartes du mode Horde de World War Z réunies ici est une reconstruction vue du dessus de l'arène : où apparaissent les charges de brèche, où sont les boutiques et les lootboxes, où se trouvent les portails, les mitrailleuses et les clôtures électrifiées, et quelles surfaces la horde peut réellement parcourir.",
+
+  "meta.description": "Cartes interactives des cinq arènes du mode Horde de World War Z : charges de brèche, boutiques, lootboxes, mitrailleuses, points d'apparition et surface praticable.",
+
+  "nav.arena": "Arène",
+  "nav.layers": "Calques",
+  "nav.objects": "Objets du jeu",
+  "nav.language": "Langue",
+
+  "map.jerusalem": "Jérusalem",
+  "map.newYork": "New York",
+  "map.rome": "Rome",
+  "map.tokyo": "Tokyo",
+  "map.camp": "Aéroport / Camp",
+
+  "floor.level": "Niveau {n}",
+  "layer.navmesh": "Navmesh par-dessus",
+  "layer.zones": "Noms de zone",
+
+  "cat.charge": "Charge de brèche",
+  "cat.lootbox": "Lootbox",
+  "cat.shop": "Boutique",
+  "cat.gate": "Portail",
+  "cat.front": "Ligne de front",
+  "cat.medkit": "Trousse de soins",
+  "cat.ammo": "Munitions",
+  "cat.weapon": "Arme",
+  "cat.supplies": "Ravitaillement",
+  "cat.corpse": "Corps fouillable",
+  "cat.mg": "Mitrailleuse",
+  "cat.zspawn": "Apparition de zombies",
+  "cat.pspawn": "Apparition des joueurs",
+  "cat.barricade": "Barricade",
+  "cat.wire": "Barbelés",
+  "cat.grid": "Clôture électrifiée",
+  "cat.ladder": "Échelle",
+
+  "hud.recenter": "Recadrer",
+  "hud.zoomIn": "Zoomer",
+  "hud.zoomOut": "Dézoomer",
+  "hud.camera": "caméra",
+  "hint.controls": "Glisser pour déplacer, molette pour zoomer, clic droit pour incliner. « Recadrer » revient à la vue du dessus.",
+
+  "tip.zone": "zone",
+  "tip.level": "niv",
+  "tip.andOthers": "et {n} autres à moins de 6 m",
+
+  "stats.placed": "{n} placés",
+  "stats.size": "{w} × {h} m",
+
+  "state.loading": "Chargement…",
+  "error.load": "Cette arène n'a pas pu être chargée.",
+  "error.webgl": "WebGL n'est pas disponible dans ce navigateur.",
+
+  "about.title": "À propos",
+  "about.body": "Projet de fans, non officiel. Chaque arène est reconstruite à partir des volumes de collision et du navmesh d'une copie locale du jeu. C'est une reconstitution, pas un document officiel.",
+  "about.disclaimer": "Sans affiliation avec Saber Interactive ni Focus Entertainment. World War Z et les marques associées appartiennent à leurs détenteurs respectifs.",
+  "about.source": "Code source"
+}

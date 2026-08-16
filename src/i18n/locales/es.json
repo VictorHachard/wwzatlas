@@ -1,0 +1,65 @@
+{
+  "app.title": "Horde Mode Atlas",
+  "app.tagline": "Vistas cenitales de las arenas del Modo Horda de World War Z",
+
+  "seo.h1": "Mapas del Modo Horda de World War Z",
+  "seo.mapHeading": "{name} - mapa del Modo Horda de World War Z",
+  "seo.about": "Cada uno de los cinco mapas del Modo Horda de World War Z reunidos aquí es una reconstrucción cenital de la arena: dónde aparecen las cargas de demolición, dónde están las tiendas y las cajas de botín, dónde se sitúan los portones, las ametralladoras y las vallas eléctricas, y qué superficies puede recorrer realmente la horda.",
+
+  "meta.description": "Mapas interactivos de las cinco arenas del Modo Horda de World War Z: cargas de demolición, tiendas, cajas de botín, ametralladoras, puntos de aparición y superficie transitable.",
+
+  "nav.arena": "Arena",
+  "nav.layers": "Capas",
+  "nav.objects": "Objetos del juego",
+  "nav.language": "Idioma",
+
+  "map.jerusalem": "Jerusalén",
+  "map.newYork": "Nueva York",
+  "map.rome": "Roma",
+  "map.tokyo": "Tokio",
+  "map.camp": "Aeropuerto / Campamento",
+
+  "floor.level": "Nivel {n}",
+  "layer.navmesh": "Navmesh superpuesto",
+  "layer.zones": "Nombres de zona",
+
+  "cat.charge": "Carga de demolición",
+  "cat.lootbox": "Caja de botín",
+  "cat.shop": "Tienda",
+  "cat.gate": "Portón",
+  "cat.front": "Línea del frente",
+  "cat.medkit": "Botiquín",
+  "cat.ammo": "Munición",
+  "cat.weapon": "Arma",
+  "cat.supplies": "Suministros",
+  "cat.corpse": "Cadáver registrable",
+  "cat.mg": "Ametralladora",
+  "cat.zspawn": "Aparición de zombis",
+  "cat.pspawn": "Aparición de jugadores",
+  "cat.barricade": "Barricada",
+  "cat.wire": "Alambre de espino",
+  "cat.grid": "Valla eléctrica",
+  "cat.ladder": "Escalera",
+
+  "hud.recenter": "Recentrar",
+  "hud.zoomIn": "Acercar",
+  "hud.zoomOut": "Alejar",
+  "hud.camera": "cámara",
+  "hint.controls": "Arrastra para desplazar, rueda para acercar, clic derecho para inclinar. «Recentrar» vuelve a la vista cenital.",
+
+  "tip.zone": "zona",
+  "tip.level": "niv",
+  "tip.andOthers": "y {n} más a menos de 6 m",
+
+  "stats.placed": "{n} colocados",
+  "stats.size": "{w} × {h} m",
+
+  "state.loading": "Cargando…",
+  "error.load": "No se ha podido cargar esta arena.",
+  "error.webgl": "WebGL no está disponible en este navegador.",
+
+  "about.title": "Acerca de",
+  "about.body": "Proyecto de fans no oficial. Cada arena se reconstruye a partir de los volúmenes de colisión y del navmesh de una copia local del juego: es una reconstrucción, no un documento oficial.",
+  "about.disclaimer": "Sin afiliación con Saber Interactive ni Focus Entertainment. World War Z y las marcas relacionadas pertenecen a sus respectivos propietarios.",
+  "about.source": "Código fuente"
+}

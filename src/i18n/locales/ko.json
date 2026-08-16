@@ -1,0 +1,65 @@
+{
+  "app.title": "Horde Mode Atlas",
+  "app.tagline": "World War Z 호드 모드 아레나 top-down 지도",
+
+  "seo.h1": "World War Z 호드 모드 맵",
+  "seo.mapHeading": "{name} - World War Z 호드 모드 맵",
+  "seo.about": "여기 있는 World War Z 호드 모드 맵 다섯 개는 모두 아레나를 위에서 내려다본 형태로 재구성한 것입니다. 폭파 장약이 나오는 위치, 상점과 보급 상자의 자리, 게이트·기관총·전기 울타리의 배치, 그리고 좀비 무리가 실제로 이동할 수 있는 지형을 확인할 수 있습니다.",
+
+  "meta.description": "World War Z 호드 모드 5개 아레나의 인터랙티브 top-down 지도. 폭파 장약, 상점, 보급 상자, 기관총, 스폰 지점, 이동 가능 지형을 표시합니다.",
+
+  "nav.arena": "아레나",
+  "nav.layers": "레이어",
+  "nav.objects": "게임 오브젝트",
+  "nav.language": "언어",
+
+  "map.jerusalem": "예루살렘",
+  "map.newYork": "뉴욕",
+  "map.rome": "로마",
+  "map.tokyo": "도쿄",
+  "map.camp": "공항 / 캠프",
+
+  "floor.level": "레벨 {n}",
+  "layer.navmesh": "내비메시 겹쳐 보기",
+  "layer.zones": "구역 이름",
+
+  "cat.charge": "폭파 장약",
+  "cat.lootbox": "보급 상자",
+  "cat.shop": "상점",
+  "cat.gate": "게이트",
+  "cat.front": "전선",
+  "cat.medkit": "구급 상자",
+  "cat.ammo": "탄약",
+  "cat.weapon": "무기",
+  "cat.supplies": "보급품",
+  "cat.corpse": "수색 가능한 시체",
+  "cat.mg": "기관총",
+  "cat.zspawn": "좀비 스폰",
+  "cat.pspawn": "플레이어 스폰",
+  "cat.barricade": "바리케이드",
+  "cat.wire": "철조망",
+  "cat.grid": "전기 울타리",
+  "cat.ladder": "사다리",
+
+  "hud.recenter": "중앙 정렬",
+  "hud.zoomIn": "확대",
+  "hud.zoomOut": "축소",
+  "hud.camera": "카메라",
+  "hint.controls": "드래그로 이동, 휠로 확대·축소, 오른쪽 클릭으로 기울입니다. ‘중앙 정렬’을 누르면 top-down 시점으로 돌아갑니다.",
+
+  "tip.zone": "구역",
+  "tip.level": "층",
+  "tip.andOthers": "6 m 이내 {n}개 더",
+
+  "stats.placed": "{n}개 배치",
+  "stats.size": "{w} × {h} m",
+
+  "state.loading": "불러오는 중…",
+  "error.load": "이 아레나를 불러오지 못했습니다.",
+  "error.webgl": "이 브라우저에서는 WebGL을 사용할 수 없습니다.",
+
+  "about.title": "소개",
+  "about.body": "비공식 팬 프로젝트입니다. 각 아레나는 로컬에 설치된 게임의 충돌 볼륨과 내비메시로부터 재구성한 것으로, 공식 자료가 아닙니다.",
+  "about.disclaimer": "Saber Interactive 및 Focus Entertainment와 무관합니다. World War Z 및 관련 상표는 각 권리자에게 있습니다.",
+  "about.source": "소스 코드"
+}

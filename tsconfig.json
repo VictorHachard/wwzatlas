@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "noEmit": true,
+    /* The WebGL renderer is ported over from the standalone artifact, where it
+       was proven against all five arenas. It stays plain JS on purpose: making
+       it satisfy a type checker would mean rewriting working graphics code, and
+       every edit there is a chance to break a shader path that is hard to test.
+       Its public surface is typed by hand in src/gl/renderer.d.ts. */
+    "allowJs": true,
+    "checkJs": false,
+    "types": ["vite/client"]
+  },
+  "include": ["src", "vite.config.ts"]
+}
