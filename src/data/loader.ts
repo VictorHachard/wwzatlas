@@ -19,6 +19,7 @@ export interface Marker {
   zz: number;
   f: number; // floor
   k?: number; // how many identical markers were folded into this one
+  a?: number[]; // mounted MG: barrel heading per gun, degrees, 0 = world +Z, 90 = +X
 }
 
 export interface ZoneLabel {

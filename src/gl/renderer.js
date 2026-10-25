@@ -677,6 +677,147 @@ export function createRenderer(o) {
     return M.markers.filter((k) => catsOn.has(k.c) && floorsOn.has(k.f));
   }
 
+  /* Where a mounted MG points: one cone per gun folded into the dot, built in
+     the world and projected with the scene's own camera, so tilting the view
+     shows it as a solid. Only the heading comes from the game; the length, the
+     opening and the barrel height are a reading aid -- the game's range and
+     aim limits are not in the data we can read.
+
+     Bullets do not go through floors, so neither does the cone: it is a sheaf
+     of rays from the barrel, each stopped at the first navmesh triangle it
+     meets. The navmesh is exactly the floors -- fences and grilles are not on
+     it, and they are not cut. Walls are not cut either: they only exist as
+     collision boxes, which cannot tell a wall from a grille. */
+  const CONE_LEN = 30, CONE_HALF = (22 * Math.PI) / 180;
+  const CONE_RINGS = 3, CONE_SEG = 16; // rays: the axis + CONE_RINGS rings of CONE_SEG
+  const CONE_MERGE = 12; // degrees: closer headings on one dot draw one cone
+  const BARREL_Y = 1.2; // a mounted gun sits about chest high over its marker
+
+  // first navmesh hit along a ray, two-sided (winding is not guaranteed)
+  function rayHit(P, tris, ox, oy, oz, dx, dy, dz, tmax) {
+    let best = tmax;
+    for (let n = 0; n < tris.length; n += 3) {
+      const a = tris[n], b = tris[n + 1], d = tris[n + 2];
+      const e1x = P[b] - P[a], e1y = P[b + 1] - P[a + 1], e1z = P[b + 2] - P[a + 2];
+      const e2x = P[d] - P[a], e2y = P[d + 1] - P[a + 1], e2z = P[d + 2] - P[a + 2];
+      const px = dy * e2z - dz * e2y, py = dz * e2x - dx * e2z, pz = dx * e2y - dy * e2x;
+      const det = e1x * px + e1y * py + e1z * pz;
+      if (Math.abs(det) < 1e-9) continue;
+      const inv = 1 / det;
+      const tx = ox - P[a], ty = oy - P[a + 1], tz = oz - P[a + 2];
+      const u = (tx * px + ty * py + tz * pz) * inv;
+      if (u < 0 || u > 1) continue;
+      const qx = ty * e1z - tz * e1y, qy = tz * e1x - tx * e1z, qz = tx * e1y - ty * e1x;
+      const v = (dx * qx + dy * qy + dz * qz) * inv;
+      if (v < 0 || u + v > 1) continue;
+      const t = (e2x * qx + e2y * qy + e2z * qz) * inv;
+      if (t > 0.3 && t < best) best = t; // 0.3 m: not the gun's own footing
+    }
+    return best;
+  }
+
+  /* The cut cone in scene coordinates: apex, then ring r (0 = the axis alone)
+     point u. Depends only on the arena, so it is computed once per gun. */
+  function coneShape(k, deg) {
+    const cache = M._cones || (M._cones = new Map());
+    const key = `${k.x},${k.zz},${k.y},${deg}`;
+    if (cache.has(key)) return cache.get(key);
+    const c = M.vol.centre;
+    const ox = k.x - c[0], oy = (k.y ?? 0) + BARREL_Y - c[1], oz = k.zz - c[2];
+    const t = (deg * Math.PI) / 180;
+    const fx = Math.sin(t), fz = Math.cos(t); // barrel, horizontal
+    const rx = fz, rz = -fx; // its right; up is world Y
+    let P = null, tris = [];
+    if (M.nav) {
+      // only the triangles the cone can reach
+      P = navPositions(M);
+      const I = M.nav.i, reach = CONE_LEN + 1;
+      for (let n = 0; n < I.length; n += 3) {
+        const a = I[n] * 3, b = I[n + 1] * 3, d = I[n + 2] * 3;
+        if (Math.min(P[a], P[b], P[d]) > ox + reach || Math.max(P[a], P[b], P[d]) < ox - reach) continue;
+        if (Math.min(P[a + 2], P[b + 2], P[d + 2]) > oz + reach || Math.max(P[a + 2], P[b + 2], P[d + 2]) < oz - reach) continue;
+        if (Math.min(P[a + 1], P[b + 1], P[d + 1]) > oy + reach || Math.max(P[a + 1], P[b + 1], P[d + 1]) < oy - reach) continue;
+        tris.push(a, b, d);
+      }
+    }
+    const ray = (h, u) => {
+      const ch = Math.cos(h), sh = Math.sin(h), cu = Math.cos(u), su = Math.sin(u);
+      const dx = fx * ch + rx * sh * cu, dy = sh * su, dz = fz * ch + rz * sh * cu;
+      const len = P ? rayHit(P, tris, ox, oy, oz, dx, dy, dz, CONE_LEN) : CONE_LEN;
+      return [ox + dx * len, oy + dy * len, oz + dz * len];
+    };
+    const rings = [[ray(0, 0)]];
+    for (let r = 1; r <= CONE_RINGS; r++) {
+      const ring = [];
+      for (let i = 0; i < CONE_SEG; i++) ring.push(ray((r / CONE_RINGS) * CONE_HALF, (i / CONE_SEG) * Math.PI * 2));
+      rings.push(ring);
+    }
+    const shape = { apex: [ox, oy, oz], axisEnd: [ox + fx * CONE_LEN, oy, oz + fz * CONE_LEN], rings };
+    cache.set(key, shape);
+    return shape;
+  }
+
+  // a triangle added to the path always turning the same way on screen, so one
+  // nonzero fill paints the union of them all once, with no doubled alpha
+  function addTri(p, q, r) {
+    const area = (q[0] - p[0]) * (r[1] - p[1]) - (q[1] - p[1]) * (r[0] - p[0]);
+    if (Math.abs(area) < 1e-6) return;
+    if (area < 0) { const s2 = q; q = r; r = s2; }
+    ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); ctx.lineTo(r[0], r[1]); ctx.closePath();
+  }
+
+  function drawHeadings(k, col) {
+    // same guard as screenOf: no WebGL context, no projection
+    if (!MVP || !M?.vol) return;
+    // guns folded into one dot often face the same way; stacked cones would add
+    // up to a flat, opaque block and the fade would be lost
+    const heads = [];
+    k.a.forEach((deg) => {
+      if (!heads.some((h) => Math.abs((((deg - h) % 360) + 540) % 360 - 180) < CONE_MERGE)) heads.push(deg);
+    });
+    heads.forEach((deg) => {
+      const sh = coneShape(k, deg);
+      const apex = project3(sh.apex), axisEnd = project3(sh.axisEnd);
+      if (!apex || !axisEnd) return;
+      const rings = [];
+      for (const ring of sh.rings) {
+        const pr = ring.map(project3);
+        if (pr.some((p) => !p)) return; // part of the cone is behind the camera
+        rings.push(pr);
+      }
+      const outer = rings[CONE_RINGS];
+      ctx.beginPath();
+      for (let i = 0; i < CONE_SEG; i++) {
+        const j = (i + 1) % CONE_SEG;
+        addTri(apex, outer[i], outer[j]); // the mantle
+        // the far surface, which is where the rays were cut
+        addTri(rings[0][0], rings[1][i], rings[1][j]);
+        for (let r = 1; r < CONE_RINGS; r++) {
+          addTri(rings[r][i], rings[r + 1][i], rings[r + 1][j]);
+          addTri(rings[r][i], rings[r + 1][j], rings[r][j]);
+        }
+      }
+      // fade from the gun along the uncut axis; when the view runs down the
+      // barrel the two meet on screen and a radial fade takes over
+      const span = Math.hypot(axisEnd[0] - apex[0], axisEnd[1] - apex[1]);
+      const g = span > 4
+        ? ctx.createLinearGradient(apex[0], apex[1], axisEnd[0], axisEnd[1])
+        : ctx.createRadialGradient(apex[0], apex[1], 0, apex[0], apex[1],
+            Math.max(...outer.map((p) => Math.hypot(p[0] - apex[0], p[1] - apex[1]))));
+      g.addColorStop(0, col + "80");
+      g.addColorStop(0.25, col + "40");
+      g.addColorStop(0.6, col + "14");
+      g.addColorStop(1, col + "00");
+      ctx.fillStyle = g; ctx.fill("nonzero");
+      // the far rim, faint: it follows the floor where the cone was cut, and it
+      // is what makes the cone read as a volume once the camera is tilted
+      ctx.beginPath();
+      outer.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1])));
+      ctx.closePath();
+      ctx.lineWidth = 1; ctx.strokeStyle = col + "38"; ctx.stroke();
+    });
+  }
+
   /* zone labels + markers, in screen space */
   function drawOverlay(r) {
     if (showZones) {
@@ -695,7 +836,12 @@ export function createRenderer(o) {
         ctx.fillStyle = "#93A3B8"; ctx.fillText(t, sx, sy);
       });
     }
-    visibleMarkers().forEach((k) => {
+    const shown = visibleMarkers();
+    // cones first: a long one must not cover the next gun's dot
+    shown.forEach((k) => {
+      if (k.a) drawHeadings(k, (o.catBy[k.c] || { col: "#fff" }).col);
+    });
+    shown.forEach((k) => {
       const cat = o.catBy[k.c] || { g: "?", col: "#fff" };
       const s = screenOf(k);
       if (!s) return;
