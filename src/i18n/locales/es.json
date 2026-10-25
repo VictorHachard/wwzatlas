@@ -38,6 +38,8 @@
   "cat.supplies": "Suministros",
   "cat.corpse": "Cadáver registrable",
   "cat.mg": "Ametralladora",
+  "cat.turret": "Torreta automática",
+  "cat.fturret": "Torreta de la línea del frente",
   "cat.zspawn": "Aparición de zombis",
   "cat.pspawn": "Aparición de jugadores",
   "cat.barricade": "Barricada",

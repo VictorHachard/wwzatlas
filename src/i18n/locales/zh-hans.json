@@ -38,6 +38,8 @@
   "cat.supplies": "补给",
   "cat.corpse": "可搜刮尸体",
   "cat.mg": "机枪",
+  "cat.turret": "自动炮塔",
+  "cat.fturret": "前线炮塔",
   "cat.zspawn": "僵尸刷新点",
   "cat.pspawn": "玩家出生点",
   "cat.barricade": "路障",

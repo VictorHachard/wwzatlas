@@ -38,6 +38,8 @@
   "cat.supplies": "補給物資",
   "cat.corpse": "探索可能な死体",
   "cat.mg": "機関銃",
+  "cat.turret": "自動タレット",
+  "cat.fturret": "前線タレット",
   "cat.zspawn": "ゾンビのスポーン",
   "cat.pspawn": "プレイヤーのスポーン",
   "cat.barricade": "バリケード",

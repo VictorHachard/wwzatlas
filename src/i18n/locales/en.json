@@ -38,6 +38,8 @@
   "cat.supplies": "Supplies",
   "cat.corpse": "Searchable corpse",
   "cat.mg": "Machine gun",
+  "cat.turret": "Auto turret",
+  "cat.fturret": "Front line turret",
   "cat.zspawn": "Zombie spawn",
   "cat.pspawn": "Player spawn",
   "cat.barricade": "Barricade",

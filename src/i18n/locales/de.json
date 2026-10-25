@@ -38,6 +38,8 @@
   "cat.supplies": "Nachschub",
   "cat.corpse": "Durchsuchbare Leiche",
   "cat.mg": "Maschinengewehr",
+  "cat.turret": "Automatisches Geschütz",
+  "cat.fturret": "Frontlinien-Geschütz",
   "cat.zspawn": "Zombie-Spawn",
   "cat.pspawn": "Spieler-Spawn",
   "cat.barricade": "Barrikade",

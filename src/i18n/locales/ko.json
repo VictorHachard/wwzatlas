@@ -38,6 +38,8 @@
   "cat.supplies": "보급품",
   "cat.corpse": "수색 가능한 시체",
   "cat.mg": "기관총",
+  "cat.turret": "자동 포탑",
+  "cat.fturret": "전선 포탑",
   "cat.zspawn": "좀비 스폰",
   "cat.pspawn": "플레이어 스폰",
   "cat.barricade": "바리케이드",

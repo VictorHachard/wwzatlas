@@ -38,6 +38,8 @@
   "cat.supplies": "Suprimentos",
   "cat.corpse": "Corpo revistável",
   "cat.mg": "Metralhadora",
+  "cat.turret": "Torreta automática",
+  "cat.fturret": "Torreta da linha de frente",
   "cat.zspawn": "Surgimento de zumbis",
   "cat.pspawn": "Surgimento de jogadores",
   "cat.barricade": "Barricada",

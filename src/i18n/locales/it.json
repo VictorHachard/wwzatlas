@@ -38,6 +38,8 @@
   "cat.supplies": "Rifornimenti",
   "cat.corpse": "Cadavere perquisibile",
   "cat.mg": "Mitragliatrice",
+  "cat.turret": "Torretta automatica",
+  "cat.fturret": "Torretta della linea del fronte",
   "cat.zspawn": "Comparsa zombie",
   "cat.pspawn": "Comparsa giocatori",
   "cat.barricade": "Barricata",

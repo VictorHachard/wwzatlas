@@ -23,6 +23,8 @@ export const CATS: Cat[] = [
   { id: "supplies", g: "S", col: "#7ED4A6", on: false },
   { id: "corpse", g: "x", col: "#A8748F", on: false },
   { id: "mg", g: "M", col: "#E0703C", on: false },
+  { id: "turret", g: "T", col: "#F4D35E", on: false },
+  { id: "fturret", g: "K", col: "#6C8EF5", on: false },
   { id: "zspawn", g: "Z", col: "#7A5CCB", on: false },
   { id: "pspawn", g: "P", col: "#4FC3A1", on: false },
   { id: "barricade", g: "B", col: "#8C9AAF", on: false },

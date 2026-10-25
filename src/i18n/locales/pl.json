@@ -38,6 +38,8 @@
   "cat.supplies": "Zaopatrzenie",
   "cat.corpse": "Przeszukiwalne zwłoki",
   "cat.mg": "Karabin maszynowy",
+  "cat.turret": "Wieżyczka automatyczna",
+  "cat.fturret": "Wieżyczka linii frontu",
   "cat.zspawn": "Odrodzenie zombie",
   "cat.pspawn": "Odrodzenie graczy",
   "cat.barricade": "Barykada",

@@ -38,6 +38,8 @@
   "cat.supplies": "Ravitaillement",
   "cat.corpse": "Corps fouillable",
   "cat.mg": "Mitrailleuse",
+  "cat.turret": "Tourelle automatique",
+  "cat.fturret": "Tourelle de ligne de front",
   "cat.zspawn": "Apparition de zombies",
   "cat.pspawn": "Apparition des joueurs",
   "cat.barricade": "Barricade",
